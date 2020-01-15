@@ -127,8 +127,6 @@ class ArticleController extends AdminController
 //
         $form->saving(function (Form $form) {
             $form->content = json_encode($this->a($form));
-//            $form->content = "fasfasfaf";
-//            $form->content = ;
         });
         return $form;
     }

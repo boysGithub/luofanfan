@@ -34,16 +34,14 @@
 
 
                         {!! $form->form->text('preface_title', '前言标题')->default(json_decode($form->field('content')->value(), true)['preface']['preface_title']) !!}
-                        {!! $form->form->UEditor('preface_content', '前言内容')->execCommand('insertHtml', 'ffhasfjkjas')!!}
+                        {!! $form->form->UEditor('preface_content', '前言内容')!!}
                         @if (json_decode($form->field('content')->value(), true)['preface']['preface_content'])
-{{--                            {!! json_decode($form->field('content')->value(), true)['preface']['preface_content'] !!}--}}
                             <script>
-                                window.onload = function() {
+                                // window.onload = function() {
                                     setTimeout(function () {
-                                        console.log(1111)
                                         UE.getEditor('preface_content').execCommand('insertHtml', '{!! json_decode($form->field('content')->value(), true)['preface']['preface_content'] !!}')
-                                    }, 3000)
-                                }
+                                    }, 1000)
+                                // }
                             </script>
                         @endif
 
@@ -76,8 +74,17 @@
                             <div class="btn-group pull-right">
                                 <button type="button" class="btn btn-primary addWx" lable="{{$i+1}}">添加微信</button>
                             </div>
-                        {!! $form->form->text('trip_title_'.($i+1)) !!}
+                        {!! $form->form->text('trip_title_'.($i+1))->default(json_decode($form->field('content')->value(), true)['arrange']['D'.($i+1)]['trip_title']) !!}
                         {!! $form->form->UEditor('trip_content_'.($i+1)) !!}
+                        @if (json_decode($form->field('content')->value(), true)['arrange']['D'.($i+1)]['trip_content'])
+                            <script>
+                                // window.onload = function() {
+                                    setTimeout(function () {
+                                        UE.getEditor("trip_content_{{$i + 1}}").execCommand('insertHtml', '{!! json_decode($form->field('content')->value(), true)['arrange']['D'.($i+1)]['trip_content'] !!}')
+                                    }, 1000)
+                                // }
+                            </script>
+                        @endif
 {{--                        {!! $form->form->multipleImage('图片'.($i+1))->removable() !!}--}}
                     @endfor
                 @endif
