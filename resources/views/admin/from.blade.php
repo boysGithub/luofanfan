@@ -37,11 +37,14 @@
                         {!! $form->form->UEditor('preface_content', '前言内容')!!}
                         @if (json_decode($form->field('content')->value(), true)['preface']['preface_content'])
                             <script>
-                                // window.onload = function() {
-                                    setTimeout(function () {
-                                        UE.getEditor('preface_content').execCommand('insertHtml', '{!! json_decode($form->field('content')->value(), true)['preface']['preface_content'] !!}')
-                                    }, 1000)
-                                // }
+                                setTimeout(function () {
+                                    UE.getEditor('preface_content').execCommand('insertHtml', '{!! json_decode($form->field('content')->value(), true)['preface']['preface_content'] !!}')
+                                }, 1000)
+                                {{--window.onload = function() {--}}
+                                {{--    setTimeout(function () {--}}
+                                {{--        UE.getEditor('preface_content').execCommand('insertHtml', '{!! json_decode($form->field('content')->value(), true)['preface']['preface_content'] !!}')--}}
+                                {{--    }, 1000)--}}
+                                {{--}--}}
                             </script>
                         @endif
 
@@ -78,15 +81,38 @@
                         {!! $form->form->UEditor('trip_content_'.($i+1)) !!}
                         @if (json_decode($form->field('content')->value(), true)['arrange']['D'.($i+1)]['trip_content'])
                             <script>
-                                // window.onload = function() {
-                                    setTimeout(function () {
-                                        UE.getEditor("trip_content_{{$i + 1}}").execCommand('insertHtml', '{!! json_decode($form->field('content')->value(), true)['arrange']['D'.($i+1)]['trip_content'] !!}')
-                                    }, 1000)
-                                // }
+                                setTimeout(function () {
+                                    UE.getEditor("trip_content_{{$i + 1}}").execCommand('insertHtml', '{!! json_decode($form->field('content')->value(), true)['arrange']['D'.($i+1)]['trip_content'] !!}')
+                                }, 1000)
+                                {{--window.onload = function() {--}}
+                                {{--    setTimeout(function () {--}}
+                                {{--        UE.getEditor("trip_content_{{$i + 1}}").execCommand('insertHtml', '{!! json_decode($form->field('content')->value(), true)['arrange']['D'.($i+1)]['trip_content'] !!}')--}}
+                                {{--    }, 1000)--}}
+                                {{--}--}}
                             </script>
                         @endif
-{{--                        {!! $form->form->multipleImage('图片'.($i+1))->removable() !!}--}}
                     @endfor
+                        <div class="collapse in" id="fieldset-5e15a679c06cc">
+                            <div style="height: 20px; border-bottom: 1px solid #eee; text-align: center;margin-top: 20px;margin-bottom: 20px;">
+  <span style="font-size: 18px; background-color: #ffffff; padding: 0 10px;">
+    注意事项
+  </span>
+                            </div>
+                        </div>
+                    {!! $form->form->text('take_care_title', '注意事项标题')->default(json_decode($form->field('content')->value(), true)['take_care']['take_care_title']) !!}
+                    {!! $form->form->UEditor('take_care_content', '注意事项内容') !!}
+                    @if (json_decode($form->field('content')->value(), true)['take_care']['take_care_content'])
+                        <script>
+                            setTimeout(function () {
+                                UE.getEditor("take_care_content").execCommand('insertHtml', '{!! json_decode($form->field('content')->value(), true)['take_care']['take_care_content'] !!}')
+                            }, 1000)
+                            {{--window.onload = function() {--}}
+                            {{--    setTimeout(function () {--}}
+                            {{--        UE.getEditor("take_care_content").execCommand('insertHtml', '{!! json_decode($form->field('content')->value(), true)['take_care']['take_care_content'] !!}')--}}
+                            {{--    }, 1000)--}}
+                            {{--}--}}
+                        </script>
+                    @endif
                 @endif
             </div>
         @endif

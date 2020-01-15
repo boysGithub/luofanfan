@@ -42,11 +42,9 @@
             "database/seeds",
             "database/factories"
         ],
-        "autoload": {
-            "files": [
-                "app/Http/helpers.php"
-            ]
-        }
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

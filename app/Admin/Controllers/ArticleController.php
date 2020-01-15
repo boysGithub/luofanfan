@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Article;
+use App\User;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -80,6 +81,7 @@ class ArticleController extends AdminController
     protected function form()
     {
         $form = new Form(new Article());
+        $user = User::all();
         $form->setView('admin.from');
         $form->fieldset('网站信息设置', function (Form $form) {
             $form->text('web_title', __('网页头设置'))->required();
@@ -98,10 +100,11 @@ class ArticleController extends AdminController
             $form->text('read_count', __('阅读数'))->default('10');
         });
 
-        $form->fieldset('客服信息设置', function (Form $form) {
-            $form->text('uid', __('客服'))->required();
+        $form->fieldset('客服信息设置', function (Form $form) use ($user) {
+            $form->select('uid', __('客服'))->options($user->pluck('name', 'id'))->required();
         });
         $form->text('content', '内容');
+        $form->image('itinerary_img', __('简介配图'))->uniqueName();
 
         $form->fieldset('文章内容编辑', function (Form $form) {
             $form->divider('前言');
@@ -134,20 +137,21 @@ class ArticleController extends AdminController
     public function a($form)
     {
         $tmp = [];
-//        $a = '<p>fasfsafafsajhfjka<br/></p><p>afshfhakfafakf</p><p><img src="/storage//uploads/image/2020/01/14/06.jpg" title="/uploads/image/2020/01/14/06.jpg" alt="06.jpg"/><img src="/storage//uploads/image/2020/01/14/13.jpg" title="/uploads/image/2020/01/14/13.jpg" alt="13.jpg"/><img src="/storage//uploads/image/2020/01/14/07.jpg" title="/uploads/image/2020/01/14/07.jpg" alt="07.jpg"/></p><p>fhasjfkhasjkfhkajf</p><p>asfhaskfhajkhfjka</p><p>ashfakshfskakf</p><p><img src="/storage//uploads/image/2020/01/14/06.jpg" title="/uploads/image/2020/01/14/06.jpg" alt="06.jpg"/><img src="/storage//uploads/image/2020/01/14/07.jpg" title="/uploads/image/2020/01/14/07.jpg" alt="07.jpg"/></p><p><img src="/storage//uploads/image/2020/01/14/13.jpg" title="/uploads/image/2020/01/14/13.jpg" alt="13.jpg"/></p>';
-//        $a = '<p>fasfsafafsajhfjka<br/></p><p>afshfhakfafakf</p><p><img src="/storage//uploads/image/2020/01/14/13.jpg" title="/uploads/image/2020/01/14/13.jpg" alt="13.jpg"/></p>';
-
+        /*整理提取后台展示内容*/
         // 提取前言
         $tmp['preface'] = [
             'preface_title' => $form->preface_title,
             'preface_content' => $form->preface_content,
         ];
-
         // 提取行程简介
         $tmp['itinerary'] = $this->itinerary($form);
-
         // 提取行程介绍
         $tmp['arrange'] = $this->arrange($form);
+        // 注意事项
+        $tmp['take_care'] = [
+            'take_care_title' => $form->take_care_title,
+            'take_care_content' => $form->take_care_content
+        ];
 
         return $tmp;
     }

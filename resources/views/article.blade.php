@@ -177,34 +177,38 @@
             </div>
         </div>
         <div class="item">
+            @foreach(json_decode($article->content, true)['itinerary'] as $k => $v)
             <div class="title-box">
-                <div class="box-blue">D1</div>
-                <p class="title-box-item">出发地——贵阳</p>
+                <div class="box-blue">{{ $k }}</div>
+                <p class="title-box-item">{{ $v }}</p>
             </div>
-            <div class="title-box">
-                <div class="box-blue">D2</div>
-                <p class="title-box-item">贵阳-黄果树瀑布，可以游陡坡塘、天星桥、黄果树瀑布景区</p>
-            </div>
-            <div class="title-box">
-                <div class="box-blue">D3</div>
-                <p class="title-box-item">荔波-小七孔景区，可以游鸳鸯湖、水上森林、拉雅瀑布、卧龙潭等</p>
-            </div>
-            <div class="title-box">
-                <div class="box-blue">D4</div>
-                <p class="title-box-item">千户苗寨-凯里-铜仁</p>
-            </div>
-            <div class="title-box">
-                <div class="box-blue">D5</div>
-                <p class="title-box-item">铜仁-梵净山（佛教圣地）-镇远</p>
-            </div>
-            <div class="title-box" style="margin-bottom: 0px;">
-                <div class="box-blue">D6</div>
-                <p class="title-box-item">镇远-贵阳（返程）</p>
-            </div>
+            @endforeach
+{{--            <div class="title-box">--}}
+{{--                <div class="box-blue">D2</div>--}}
+{{--                <p class="title-box-item">贵阳-黄果树瀑布，可以游陡坡塘、天星桥、黄果树瀑布景区</p>--}}
+{{--            </div>--}}
+{{--            <div class="title-box">--}}
+{{--                <div class="box-blue">D3</div>--}}
+{{--                <p class="title-box-item">荔波-小七孔景区，可以游鸳鸯湖、水上森林、拉雅瀑布、卧龙潭等</p>--}}
+{{--            </div>--}}
+{{--            <div class="title-box">--}}
+{{--                <div class="box-blue">D4</div>--}}
+{{--                <p class="title-box-item">千户苗寨-凯里-铜仁</p>--}}
+{{--            </div>--}}
+{{--            <div class="title-box">--}}
+{{--                <div class="box-blue">D5</div>--}}
+{{--                <p class="title-box-item">铜仁-梵净山（佛教圣地）-镇远</p>--}}
+{{--            </div>--}}
+{{--            <div class="title-box" style="margin-bottom: 0px;">--}}
+{{--                <div class="box-blue">D6</div>--}}
+{{--                <p class="title-box-item">镇远-贵阳（返程）</p>--}}
+{{--            </div>--}}
         </div>
+        @if($article->itinerary_img)
         <div class="item">
-            <img src="./files/05.jpg">
+            <img src="{{ showImg($article->itinerary_img) }}">
         </div>
+        @endif
         <div class="item">
             <div class="span-box">
                 <span class="line-blue"></span>
