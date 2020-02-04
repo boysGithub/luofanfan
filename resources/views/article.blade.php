@@ -160,16 +160,25 @@
         <!--<div class="item">
 					<img src="img/01.jpg" />
 				</div>-->
+        @foreach($article->content['preface']['preface_content'] as $val)
         <div class="item">
-            <p>因为对云贵高原上贵州这座神秘城市的向往，我前后去过贵州不下三次，只有经历过它的四季才能说得上对它熟悉，所以现在问我：贵州有哪些好看好玩的地方，我应该很有发言权了。黄果树瀑布、小七孔、西江千户苗寨、梵净山、镇远古镇…每次去都有新收获，贵州真的是太美了。</p><br>
-            <p>想了解我们的行程、路线、价格的朋友们可以加<span class="bnname"></span>金牌管家<span class="wxname"></span>的微信：<span class="weixin"></span>（免费咨询呦）。</p><br>
-            <p>最近一次去贵州是上个星期，我们一行9人又有大半数是第一次去，自由行的话酒店和景点门票太难定了，景点之间距离又远难去，跟团又担心遇上低价购物团强制消费闹得不愉快，最后我问了下经常出去玩的驴友，<span class="wsex">他</span>就给我介绍了自己去贵州时找的<span class="bnname"></span>团队<span class="wxname"></span>管家。管家根据我们的需求安排好了行程，提前订好了酒店和门票，还有专车接送，重要的是<span class="wxname"></span>管家还会一路陪同，为我们介绍景点，帮我们拍美美的照片，我们只管尽兴玩就行了。这次的贵州之旅朋友们都玩得格外开心，<span class="bnname"></span>金牌管家<span class="wxname"></span>绝对功不可没。</p>
+            @if ($num = preg_match_all('/<img/', $val))
+                <div class="mcimg">
+                    {!! $val !!}
+                </div>
+            @else
+                {!! $val !!}
+            @endif
+{{--            <p>因为对云贵高原上贵州这座神秘城市的向往，我前后去过贵州不下三次，只有经历过它的四季才能说得上对它熟悉，所以现在问我：贵州有哪些好看好玩的地方，我应该很有发言权了。黄果树瀑布、小七孔、西江千户苗寨、梵净山、镇远古镇…每次去都有新收获，贵州真的是太美了。</p><br>--}}
+{{--            <p>想了解我们的行程、路线、价格的朋友们可以加<span class="bnname"></span>金牌管家<span class="wxname"></span>的微信：<span class="weixin"></span>（免费咨询呦）。</p><br>--}}
+{{--            <p>最近一次去贵州是上个星期，我们一行9人又有大半数是第一次去，自由行的话酒店和景点门票太难定了，景点之间距离又远难去，跟团又担心遇上低价购物团强制消费闹得不愉快，最后我问了下经常出去玩的驴友，<span class="wsex">他</span>就给我介绍了自己去贵州时找的<span class="bnname"></span>团队<span class="wxname"></span>管家。管家根据我们的需求安排好了行程，提前订好了酒店和门票，还有专车接送，重要的是<span class="wxname"></span>管家还会一路陪同，为我们介绍景点，帮我们拍美美的照片，我们只管尽兴玩就行了。这次的贵州之旅朋友们都玩得格外开心，<span class="bnname"></span>金牌管家<span class="wxname"></span>绝对功不可没。</p>--}}
         </div>
-        <div class="item">
-            <div class="mcimg">
-                <img src="./files/02.jpg" style="width:100%;">
-            </div>
-        </div>
+        @endforeach
+{{--        <div class="item">--}}
+{{--            <div class="mcimg">--}}
+{{--                <img src="./files/02.jpg" style="width:100%;">--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <div class="item" id="xctitle">
             <div class="span-box">
                 <span class="line-blue"></span>
@@ -177,7 +186,7 @@
             </div>
         </div>
         <div class="item">
-            @foreach(json_decode($article->content, true)['itinerary'] as $k => $v)
+            @foreach($article->content['itinerary'] as $k => $v)
             <div class="title-box">
                 <div class="box-blue">{{ $k }}</div>
                 <p class="title-box-item">{{ $v }}</p>
@@ -215,157 +224,181 @@
                 <span class="span-title">行程介绍</span>
             </div>
         </div>
-        <div class="item">
-            <div class="title-box2">
-                <div class="box-blue2">第一天</div>
-                <p>上海——抵达贵阳</p>
-            </div>
-        </div>
-        <div class="item">
-            <p>我们是从上海出发直飞贵阳的，一出机场大厅就看到<span class="bnname"></span>金牌管家<span class="wxname"></span>在挥手迎接我们的到来，专车直奔入住酒店。<br>
-                下午自由活动去了附近景点，姜文成名作《寻枪》拍摄地-青岩古镇、贵阳标志性建筑（甲秀楼、文昌阁），晚上在27路小吃街吃了贵阳当地特色小吃，丝娃娃、留一手烤鱼、肠旺面等。漫步在贵阳街头，领略夜间的热闹…贵州的多姿多彩仿佛都糅合在这美丽的星空下。
-                <br> 如果大家有需要的话也可以联系管家帮忙提前安排呦，<span class="bnname"></span>金牌管家<span class="wxname"></span>微信：<span class="weixin"></span>
 
-            </p>
-        </div>
+        @foreach($article->content['arrange'] as $key => $arrange)
         <div class="item">
-            <div class="mcimg">
-                <img src="./files/06.jpg">
-                <img src="./files/07.jpg">
-            </div>
+            <div class="title-box2">
 
-        </div>
-        <div class="item">
-            <div class="title-box2">
-                <div class="box-blue2">第二天</div>
-                <p>黄果树瀑布</p>
+                <div class="box-blue2">第{{$key}}天</div>
+                <p>{{$arrange['trip_title']}}</p>
             </div>
         </div>
-        <div class="item">
-            <p>要去黄果树瀑布了有点激动！一早<span class="bnname"></span>管家<span class="wxname"></span>就到酒店来接我们了，早餐后直奔黄果树瀑布！管家已经提前帮我们预定好了观光车，so朝着大瀑布前进。还没靠近就听到了巨大的水声，亲眼看到瀑布后真的充分感受到了大自然的神奇，还可以从上、下、前、后、左、右六个方位进行观赏瀑布，西游记的水帘洞就在瀑布的后面。站在瀑布面前，大自然的震撼和感动之情混杂在一起，甚至有点美得让人说不出话来。</p>
-        </div>
-        <div class="item">
-            <img src="./files/08.jpg">
-        </div>
-        <div class="item" id="tiao1">
-            <div class="title-box2">
-                <div class="box-blue2">第三天</div>
-                <p>小七孔景区</p>
-            </div>
-        </div>
-        <div class="item">
-            <p>早上我们吃完早餐后就去“中国最美的地方”，“地球上的绿宝石”——荔波小七孔，感受大自然的鬼斧神工以及享受大自然带给我们的天然氧吧，深呼吸洗肺。这一天我们选择在特别的地方见证爱情，从七孔桥上走过，留下我们的足迹。还有美丽的卧龙潭，一切都是那么醉人。小七孔景区门票为130。一般玩1天。</p>
-        </div>
-        <div class="item">
-            <div class="mcimg">
-                <img src="./files/09.jpg" style="width:100%;">
-            </div>
-        </div>
-        <div class="item">
-            <p>然后晚上到达西江千户苗寨，管家给我们安排入住的是苗寨特色吊脚楼，晚上登观景台看万家灯火夜景，俯瞰整个苗寨，夜晚的苗寨变得宁静，增添了一份静谧的感动。 如果大家想住苗寨看夜景感受苗族文化的话可以联系一下<span class="bnname"></span>的<span class="wxname"></span>管家，这是<span class="wsex">他</span>的微信<span class="weixin"></span>，有需要就添加哦。</p>
-        </div>
-        <div class="item" id="tiao3">
-            <img src="./files/12.jpg">
-        </div>
-        <div class="item" id="tiao2">
-            <div class="title-box2">
-                <div class="box-blue2">第四天</div>
-                <p>西江千户苗寨—铜仁</p>
-            </div>
-        </div>
-        <div class="item">
-            <p>早起在寨子里面逛逛，白天苗寨揭开了神秘的面纱，苗寨四面环山，重峦叠嶂，梯田依山顺势直连云天，白水河穿寨而过，将西江苗寨一分为二。寨内吊脚楼层层叠叠，顺山势而建，又连绵成片，阳光明媚的早晨，清晨的第一缕阳光似乎可以照进每个人的心窝。</p>
-        </div>
-        <div class="item">
-            <img src="./files/13.jpg">
-        </div>
-        <div class="item">
-            <p>在苗寨里吃饭绝对是一大亮点，“高山流水”酒是苗寨热情的一种待客礼仪，就是一边喝一边倒。在贵州雷山流传一首歌“来到苗乡先品酒，你喜欢也要喝，不喜欢也要喝，管你喜欢不喜欢都要喝，你喜欢喝一杯，不喜欢喝三杯……”。当然，如果你真的喝不下了不要用手去托碗，用手碰碗示意是要把酒喝完的意思，你可以摇摇手表示自己喝不下了，哈哈，考验你酒量的时候来了！来看看同伴们的“高山流水”。永远记得那句“干一杯呀干一杯”。</p>
-        </div>
-        <div class="item">
-            <div class="mcimg">
-                <img src="./files/14.jpg">
-                <img src="./files/15.jpg">
-            </div>
-        </div>
-        <div class="item">
-            <div class="title-box2">
-                <div class="box-blue2">第五天</div>
-                <p>铜仁—梵净山（佛教圣地）—镇远</p>
-            </div>
-        </div>
-        <div class="item">
-            <p>梵净山是贵州独特的一个地标，是黔东灵山，是生态王国，是风景胜地，是一方净土。2018年7月2日，铜仁梵净山成功列入了世界自然遗产名录，梵净山申遗的成功让更多的人知道了这个佛教胜地，到这里一票难求。我们去的时候人挺多的，排队上山就花了一个多钟，为了看风景不留下遗憾，排队也值了。</p>
-        </div>
-        <div class="item">
-            <img src="./files/16.jpg">
-        </div>
-        <div class="item">
-            <p>特别提醒哦，乘坐索道一定要提前预定好！现场买票至少要排队两小时，而且很有可能没票！还好我们有<span class="bnname"></span>金牌管家<span class="wxname"></span>帮我们提前预定了，到达梵净山就直接乘坐索道开始了浪漫旅行，旁边的小年轻没买到票急得都吵架了哈哈~大家有要去贵州旅行的，不如直接找我们的<span class="bnname"></span>金牌管家<span class="wxname"></span>吧，给你们安排得明明白白~微信 <span class="weixin"></span>（←点击复制微信）</p>
-        </div>
-        <div class="item">
-            <img src="./files/17.jpg">
-        </div>
-        <div class="item">
-            <div class="title-box2">
-                <div class="box-blue2">第六天</div>
-                <p>游玩镇远古镇</p>
-            </div>
-        </div>
-        <div class="item">
-            <p>具有2000多年的历史，是贵州省黔东南苗族侗族自治州镇远县名镇，位于舞阳河畔，四周皆山，河水蜿蜒，以"S"形穿城而过。镇远古镇是不需要门票的，但是里面的小景点都是需要另外购票的。如：舞阳河、石屏山、铁溪古城。</p>
-        </div>
-        <div class="item">
-            <img src="./files/18.jpg">
-        </div>
-        <div class="item">
-            <p>或许会有人问买门票值不值？我个人认为值得，来到镇远古镇，不去了解这里的历史，不走进<span class="wsex">他</span>的怀抱，不在舞阳河乘船泛舟看浆声灯影的镇远，怎么能了解这座古城，所以还是值得的。</p>
-        </div>
-        <div class="item">
-            <img src="./files/19.jpg">
-        </div>
-        <div class="item">
-            <p>这次贵州之旅玩得很开心，真心感谢——<span class="bnname"></span>的<span class="wxname"></span>管家的热情服务及周到安排，想要玩得省心省钱的朋友，可以联系<span class="wsex">他</span><span class="weixin"></span>重要的是苗阿妹<span class="wxname"></span>管家对贵州特别熟，没带我们走弯路，全程没有购物也没有隐形消费，非常热情，有问必答，专业的事交给专业的人做，相对于自己瞎逛要省心很多。这次九人贵州之旅可以说是很完美了。在<span class="wsex">他</span>的推荐下，我们也品尝到了很多之前没有吃过的特色美食，希望下次再来贵州时，<span class="bnname"></span>金牌管家<span class="wxname"></span>可以为我们安排更多的特色景点啦。</p>
-        </div>
-        <div class="item">
-            <img src="./files/20.jpg">
-            <img src="./files/20-1.jpg">
-        </div>
-        <div class="item">
-            <p>自从上次分享游记之后，很多人都来问我：“<span class="bnname"></span>金牌管家<span class="wxname"></span>是谁？”“你都去过好几次了，为什么还要找人啊？”<br>
-                其实常旅行的人一定知道，如果想要行程更简单、更轻松，是不想自己花太多时间去想酒店预定、租车接送、出行路线，费用预算的，我想要的旅行就是我完全放松的去玩，其它的琐碎事有靠谱的人安排好就行！<span class="bnname"></span>金牌管家<span class="wxname"></span>就是这样的必须存在啊，<span class="wsex">他</span>能：
-                1、根据我的想法帮我定制化路线，安排好行车、酒店、特色饮食等<br>
-                2、需要买票的景点，总是提前帮我预定好，节约排队时间<br>
-                3、提供免费接送服务，行程自由，不赶鸭子上架<br>
-                4、<span class="bnname"></span>金牌管家<span class="wxname"></span>是专业的私享旅行定制师，专业强、口碑好<br>
-                5、自由行，想去哪就去哪，轻松自在<br>
-                所以我才总是推荐<span class="bnname"></span>金牌管家<span class="wxname"></span>给大家，只要去贵州，<span class="bnname"></span>金牌管家<span class="wxname"></span>就是我的首选向导！再次跟大家分享一次哦：<br>
-                <span class="bnname"></span>金牌管家<span class="wxname"></span>，微信<span class="weixin"></span>（←点击复制微信）<br>
-                这趟行程，总共6天5晚，个人总花费才1800左右，吃住行和门票都由<span class="bnname"></span>金牌管家<span class="wxname"></span>帮我们安排，没有购物和隐形消费，全程带着我们九个人玩，不仅玩的开心还玩的超级划算！！</p>
-        </div>
-        <div class="item">
-            <img src="./files/21.jpg">
-        </div>
+            @foreach($arrange['trip_content'] as $val)
+                <div class="item">
+                    @if ($num = preg_match_all('/<img/', $val))
+                        <div class="mcimg">
+                            {!! $val !!}
+                        </div>
+                    @else
+                        {!! $val !!}
+                    @endif
+{{--                    <p>我们是从上海出发直飞贵阳的，一出机场大厅就看到<span class="bnname"></span>金牌管家<span class="wxname"></span>在挥手迎接我们的到来，专车直奔入住酒店。<br>--}}
+{{--                        下午自由活动去了附近景点，姜文成名作《寻枪》拍摄地-青岩古镇、贵阳标志性建筑（甲秀楼、文昌阁），晚上在27路小吃街吃了贵阳当地特色小吃，丝娃娃、留一手烤鱼、肠旺面等。漫步在贵阳街头，领略夜间的热闹…贵州的多姿多彩仿佛都糅合在这美丽的星空下。--}}
+{{--                        <br> 如果大家有需要的话也可以联系管家帮忙提前安排呦，<span class="bnname"></span>金牌管家<span class="wxname"></span>微信：<span class="weixin"></span>--}}
+
+{{--                    </p>--}}
+                </div>
+            @endforeach
+        @endforeach
+{{--        <div class="item">--}}
+{{--            <div class="mcimg">--}}
+{{--                <img src="./files/06.jpg">--}}
+{{--                <img src="./files/07.jpg">--}}
+{{--            </div>--}}
+
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <div class="title-box2">--}}
+{{--                <div class="box-blue2">第二天</div>--}}
+{{--                <p>黄果树瀑布</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <p>要去黄果树瀑布了有点激动！一早<span class="bnname"></span>管家<span class="wxname"></span>就到酒店来接我们了，早餐后直奔黄果树瀑布！管家已经提前帮我们预定好了观光车，so朝着大瀑布前进。还没靠近就听到了巨大的水声，亲眼看到瀑布后真的充分感受到了大自然的神奇，还可以从上、下、前、后、左、右六个方位进行观赏瀑布，西游记的水帘洞就在瀑布的后面。站在瀑布面前，大自然的震撼和感动之情混杂在一起，甚至有点美得让人说不出话来。</p>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <img src="./files/08.jpg">--}}
+{{--        </div>--}}
+{{--        <div class="item" id="tiao1">--}}
+{{--            <div class="title-box2">--}}
+{{--                <div class="box-blue2">第三天</div>--}}
+{{--                <p>小七孔景区</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <p>早上我们吃完早餐后就去“中国最美的地方”，“地球上的绿宝石”——荔波小七孔，感受大自然的鬼斧神工以及享受大自然带给我们的天然氧吧，深呼吸洗肺。这一天我们选择在特别的地方见证爱情，从七孔桥上走过，留下我们的足迹。还有美丽的卧龙潭，一切都是那么醉人。小七孔景区门票为130。一般玩1天。</p>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <div class="mcimg">--}}
+{{--                <img src="./files/09.jpg" style="width:100%;">--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <p>然后晚上到达西江千户苗寨，管家给我们安排入住的是苗寨特色吊脚楼，晚上登观景台看万家灯火夜景，俯瞰整个苗寨，夜晚的苗寨变得宁静，增添了一份静谧的感动。 如果大家想住苗寨看夜景感受苗族文化的话可以联系一下<span class="bnname"></span>的<span class="wxname"></span>管家，这是<span class="wsex">他</span>的微信<span class="weixin"></span>，有需要就添加哦。</p>--}}
+{{--        </div>--}}
+{{--        <div class="item" id="tiao3">--}}
+{{--            <img src="./files/12.jpg">--}}
+{{--        </div>--}}
+{{--        <div class="item" id="tiao2">--}}
+{{--            <div class="title-box2">--}}
+{{--                <div class="box-blue2">第四天</div>--}}
+{{--                <p>西江千户苗寨—铜仁</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <p>早起在寨子里面逛逛，白天苗寨揭开了神秘的面纱，苗寨四面环山，重峦叠嶂，梯田依山顺势直连云天，白水河穿寨而过，将西江苗寨一分为二。寨内吊脚楼层层叠叠，顺山势而建，又连绵成片，阳光明媚的早晨，清晨的第一缕阳光似乎可以照进每个人的心窝。</p>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <img src="./files/13.jpg">--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <p>在苗寨里吃饭绝对是一大亮点，“高山流水”酒是苗寨热情的一种待客礼仪，就是一边喝一边倒。在贵州雷山流传一首歌“来到苗乡先品酒，你喜欢也要喝，不喜欢也要喝，管你喜欢不喜欢都要喝，你喜欢喝一杯，不喜欢喝三杯……”。当然，如果你真的喝不下了不要用手去托碗，用手碰碗示意是要把酒喝完的意思，你可以摇摇手表示自己喝不下了，哈哈，考验你酒量的时候来了！来看看同伴们的“高山流水”。永远记得那句“干一杯呀干一杯”。</p>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <div class="mcimg">--}}
+{{--                <img src="./files/14.jpg">--}}
+{{--                <img src="./files/15.jpg">--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <div class="title-box2">--}}
+{{--                <div class="box-blue2">第五天</div>--}}
+{{--                <p>铜仁—梵净山（佛教圣地）—镇远</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <p>梵净山是贵州独特的一个地标，是黔东灵山，是生态王国，是风景胜地，是一方净土。2018年7月2日，铜仁梵净山成功列入了世界自然遗产名录，梵净山申遗的成功让更多的人知道了这个佛教胜地，到这里一票难求。我们去的时候人挺多的，排队上山就花了一个多钟，为了看风景不留下遗憾，排队也值了。</p>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <img src="./files/16.jpg">--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <p>特别提醒哦，乘坐索道一定要提前预定好！现场买票至少要排队两小时，而且很有可能没票！还好我们有<span class="bnname"></span>金牌管家<span class="wxname"></span>帮我们提前预定了，到达梵净山就直接乘坐索道开始了浪漫旅行，旁边的小年轻没买到票急得都吵架了哈哈~大家有要去贵州旅行的，不如直接找我们的<span class="bnname"></span>金牌管家<span class="wxname"></span>吧，给你们安排得明明白白~微信 <span class="weixin"></span>（←点击复制微信）</p>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <img src="./files/17.jpg">--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <div class="title-box2">--}}
+{{--                <div class="box-blue2">第六天</div>--}}
+{{--                <p>游玩镇远古镇</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <p>具有2000多年的历史，是贵州省黔东南苗族侗族自治州镇远县名镇，位于舞阳河畔，四周皆山，河水蜿蜒，以"S"形穿城而过。镇远古镇是不需要门票的，但是里面的小景点都是需要另外购票的。如：舞阳河、石屏山、铁溪古城。</p>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <img src="./files/18.jpg">--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <p>或许会有人问买门票值不值？我个人认为值得，来到镇远古镇，不去了解这里的历史，不走进<span class="wsex">他</span>的怀抱，不在舞阳河乘船泛舟看浆声灯影的镇远，怎么能了解这座古城，所以还是值得的。</p>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <img src="./files/19.jpg">--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <p>这次贵州之旅玩得很开心，真心感谢——<span class="bnname"></span>的<span class="wxname"></span>管家的热情服务及周到安排，想要玩得省心省钱的朋友，可以联系<span class="wsex">他</span><span class="weixin"></span>重要的是苗阿妹<span class="wxname"></span>管家对贵州特别熟，没带我们走弯路，全程没有购物也没有隐形消费，非常热情，有问必答，专业的事交给专业的人做，相对于自己瞎逛要省心很多。这次九人贵州之旅可以说是很完美了。在<span class="wsex">他</span>的推荐下，我们也品尝到了很多之前没有吃过的特色美食，希望下次再来贵州时，<span class="bnname"></span>金牌管家<span class="wxname"></span>可以为我们安排更多的特色景点啦。</p>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <img src="./files/20.jpg">--}}
+{{--            <img src="./files/20-1.jpg">--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <p>自从上次分享游记之后，很多人都来问我：“<span class="bnname"></span>金牌管家<span class="wxname"></span>是谁？”“你都去过好几次了，为什么还要找人啊？”<br>--}}
+{{--                其实常旅行的人一定知道，如果想要行程更简单、更轻松，是不想自己花太多时间去想酒店预定、租车接送、出行路线，费用预算的，我想要的旅行就是我完全放松的去玩，其它的琐碎事有靠谱的人安排好就行！<span class="bnname"></span>金牌管家<span class="wxname"></span>就是这样的必须存在啊，<span class="wsex">他</span>能：--}}
+{{--                1、根据我的想法帮我定制化路线，安排好行车、酒店、特色饮食等<br>--}}
+{{--                2、需要买票的景点，总是提前帮我预定好，节约排队时间<br>--}}
+{{--                3、提供免费接送服务，行程自由，不赶鸭子上架<br>--}}
+{{--                4、<span class="bnname"></span>金牌管家<span class="wxname"></span>是专业的私享旅行定制师，专业强、口碑好<br>--}}
+{{--                5、自由行，想去哪就去哪，轻松自在<br>--}}
+{{--                所以我才总是推荐<span class="bnname"></span>金牌管家<span class="wxname"></span>给大家，只要去贵州，<span class="bnname"></span>金牌管家<span class="wxname"></span>就是我的首选向导！再次跟大家分享一次哦：<br>--}}
+{{--                <span class="bnname"></span>金牌管家<span class="wxname"></span>，微信<span class="weixin"></span>（←点击复制微信）<br>--}}
+{{--                这趟行程，总共6天5晚，个人总花费才1800左右，吃住行和门票都由<span class="bnname"></span>金牌管家<span class="wxname"></span>帮我们安排，没有购物和隐形消费，全程带着我们九个人玩，不仅玩的开心还玩的超级划算！！</p>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <img src="./files/21.jpg">--}}
+{{--        </div>--}}
         <div class="item">
             <div class="span-box">
                 <span class="line-blue"></span>
-                <span class="span-title">贵州旅游注意事项</span>
+                <span class="span-title">{{$article->content['take_care']['take_care_title']}}</span>
             </div>
         </div>
-        <div class="item">
-            <p>1、在贵州游玩不能提前订住宿，要不然会走很多冤枉路，回头路，你要先规划好自己的行程，再根据行程定相对区域的住宿，建议还是不要自己玩，除非你是土豪，让别人坑不在乎钱，贵州是旅游城市，陷阱很多啊！<br>
-                2、贵州游玩的景区众多，景点比较分散，自己玩容易走回头路，非常浪费时间，如果经济能力可以，还是自由行玩，可以请<span class="bnname"></span>安排 微信<span class="weixin"></span>，由当地专业的司机兼向导带着玩，不建议自驾游，当地景区分散，且道路崎岖，为了自己的安全还是不建议自驾玩，重要的是安全而且玩的开心呢。<br>
-                3、千万不要去参加各种低价团，现在贵州的一般的旅行社都是有强制消费和购物。团费很低，所以大家还是不要参加那种低价团。<br>
-                4、 晕车的话提前做好准备，一定要记得携带晕车药、晕车贴。不要因为身体原因影响游玩心情哦。<br>
-                5、贵州气候不太稳定，多雨潮湿，有“天无三日晴”的说法，无论什么时候出门，建议随身携带雨具。而且贵州地处高原，紫外线强烈。防晒措施一定要做好，以免晒伤。<br>
-                6、贵州的少数民族较多，特别是黔东南一带，要尊重他们的生活和信仰，避免与当地居民发生冲突。比如苗族人好客，敬酒表示对客人的欢迎，有可能会让客人喝很多酒，如果不能喝一定要对他们说明。</p>
-        </div>
-        <div class="item">
-            <img src="./files/22.jpg">
-        </div>
-        <div class="item">
-            <p>贵州多数地方处于山地和高原，气候多变，山路崎岖，多少数民族聚居，以上的事情都需要注意。</p>
-        </div>
+        @foreach($article->content['take_care']['take_care_content'] as $val)
+            <div class="item">
+                @if ($num = preg_match_all('/<img/', $val))
+                    <div class="mcimg">
+                        {!! $val !!}
+                    </div>
+                @else
+                    {!! $val !!}
+                @endif
+            </div>
+        @endforeach
+{{--        <div class="item">--}}
+{{--            <p>1、在贵州游玩不能提前订住宿，要不然会走很多冤枉路，回头路，你要先规划好自己的行程，再根据行程定相对区域的住宿，建议还是不要自己玩，除非你是土豪，让别人坑不在乎钱，贵州是旅游城市，陷阱很多啊！<br>--}}
+{{--                2、贵州游玩的景区众多，景点比较分散，自己玩容易走回头路，非常浪费时间，如果经济能力可以，还是自由行玩，可以请<span class="bnname"></span>安排 微信<span class="weixin"></span>，由当地专业的司机兼向导带着玩，不建议自驾游，当地景区分散，且道路崎岖，为了自己的安全还是不建议自驾玩，重要的是安全而且玩的开心呢。<br>--}}
+{{--                3、千万不要去参加各种低价团，现在贵州的一般的旅行社都是有强制消费和购物。团费很低，所以大家还是不要参加那种低价团。<br>--}}
+{{--                4、 晕车的话提前做好准备，一定要记得携带晕车药、晕车贴。不要因为身体原因影响游玩心情哦。<br>--}}
+{{--                5、贵州气候不太稳定，多雨潮湿，有“天无三日晴”的说法，无论什么时候出门，建议随身携带雨具。而且贵州地处高原，紫外线强烈。防晒措施一定要做好，以免晒伤。<br>--}}
+{{--                6、贵州的少数民族较多，特别是黔东南一带，要尊重他们的生活和信仰，避免与当地居民发生冲突。比如苗族人好客，敬酒表示对客人的欢迎，有可能会让客人喝很多酒，如果不能喝一定要对他们说明。</p>--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <img src="./files/22.jpg">--}}
+{{--        </div>--}}
+{{--        <div class="item">--}}
+{{--            <p>贵州多数地方处于山地和高原，气候多变，山路崎岖，多少数民族聚居，以上的事情都需要注意。</p>--}}
+{{--        </div>--}}
         <div class="item">
             <div class="lcopyright">
                 <p>本文著作权归 @<span class="wxname"></span> 所有，任何形式转载请联系作者。©2019</p>
