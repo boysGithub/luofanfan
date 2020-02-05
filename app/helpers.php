@@ -1,5 +1,5 @@
 <?php
 
 function showImg($url) {
-    return "storage/$url";
+    return "/storage/$url";
 }
