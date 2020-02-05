@@ -151,12 +151,12 @@
 
     <div class="body-middle">
 {{--        {!! $article->content !!}--}}
-{{--        <div class="item hidem">--}}
-{{--            <div class="item-note">--}}
-{{--                <span>贵州到底有多好玩？快来我告诉你呀！</span>--}}
-{{--                <span class="contact-blue JJLin">联系当地管家</span>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        <div class="item hidem">
+            <div class="item-note">
+                <span>{{ $article->content['preface']['preface_title'] }}</span>
+                <span class="contact-blue JJLin">联系当地管家</span>
+            </div>
+        </div>
         <!--<div class="item">
 					<img src="img/01.jpg" />
 				</div>-->
