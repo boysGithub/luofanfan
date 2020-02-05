@@ -51,9 +51,14 @@
         @endif
 
         <script>
-
+            var str = "<span class=\"bnname\"><"
+            str += "/span>金牌管家"
+            str += "<span class=\"wxname\"><"
+            str += "/span>的微信："
+            str += "<span class=\"weixin\"><"
+            str += "/span>"
             $('.addWx1').click(function(){
-                UE.getEditor('content').execCommand('insertHtml', '<span class="bnname"></span>金牌管家<span class="wxname"></span>的微信：<span class="weixin"></span>')
+                UE.getEditor('content').execCommand('insertHtml', str)
             })
 
             /**

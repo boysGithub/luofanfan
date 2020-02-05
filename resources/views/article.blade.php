@@ -424,6 +424,7 @@
                 <span>2019-<span class="thisMonth">06</span>-<span class="thisDay2">8</span></span>
             </div>
             @foreach($article->item_comment[$key]['content'] as $val)
+{{--                {{ dd($val) }}--}}
                 @if ($num = preg_match_all('/<img/', $val))
                     <div class="chat-item">
                         {!! $val !!}
@@ -431,6 +432,8 @@
                 @else
                     <div class="chat-item-body">
                         {!! $val !!}
+{{--                        <p>fasfaksjfhjkahsfhkjahfjashkfa<span class="bnname"></span>金牌管家<span class="wxname"></span>的微信：<span class="weixin"></span></p>--}}
+{{--                        <span class="bnname"></span><span class="wxname"></span>管家的微信 <span class="weixin"></span>咨询--}}
                     </div>
                 @endif
 {{--                <div class="chat-item-body">--}}

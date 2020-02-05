@@ -99,6 +99,9 @@
   </span>
                             </div>
                         </div>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-primary addWx2">添加微信</button>
+                        </div>
                     {!! $form->form->text('take_care_title', '注意事项标题')->default(json_decode($form->field('content')->value(), true)['take_care']['take_care_title']) !!}
                     {!! $form->form->UEditor('take_care_content', '注意事项内容') !!}
                     @if (json_decode($form->field('content')->value(), true)['take_care']['take_care_content'])
@@ -118,15 +121,25 @@
         @endif
 
         <script>
+            var str = "<span class=\"bnname\"><"
+            str += "/span>金牌管家"
+            str += "<span class=\"wxname\"><"
+            str += "/span>的微信："
+            str += "<span class=\"weixin\"><"
+            str += "/span>"
             $('.trip').change(function(){
                 // alert(1111);
             })
             $('.addWx').click(function(){
                 var a = $(this).attr('lable')
-                UE.getEditor('trip_content_'+a).execCommand('insertHtml', '<span class="bnname"></span>金牌管家<span class="wxname"></span>的微信：<span class="weixin"></span>')
+                UE.getEditor('trip_content_'+a).execCommand('insertHtml', str)
             })
             $('.addWx1').click(function(){
-                UE.getEditor('preface_content').execCommand('insertHtml', '<span class="bnname"></span>金牌管家<span class="wxname"></span>的微信：<span class="weixin"></span>')
+                UE.getEditor('preface_content').execCommand('insertHtml', str)
+            })
+
+            $('.addWx2').click(function(){
+                UE.getEditor('take_care_content').execCommand('insertHtml', str)
             })
 
             /**
