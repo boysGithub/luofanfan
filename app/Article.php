@@ -26,4 +26,9 @@ class Article extends Model
     {
         $this->attributes['extra'] = json_encode(array_values($extra));
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'uid');
+    }
 }

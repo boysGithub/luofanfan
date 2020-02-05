@@ -4,12 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $article = Article::find(1);
+//        $validatedData = Validator::make($request->all(), [
+//            'id' => 'required|integer|min:1|max:10000'
+//        ]);
+//        if ($validatedData ->fails()) {
+//            return response()->json([
+//                'msg' => '你中毒了，快点杀毒吧'
+//            ], 400);
+//        }
+        $article = Article::with('user')->find($request->id);
         $content = json_decode($article->content, true);
 //        dd($content);
         foreach ($content as $key => $value) {
@@ -57,8 +66,8 @@ class ArticleController extends Controller
                 $content['take_care']['take_care_content'] = $tmp[0];
             }
         }
-//        dd($content);
         $article->content = $content;
+//        dd($article->user->love);
         return view('article', [
             'article' => $article
         ]);

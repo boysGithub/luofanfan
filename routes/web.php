@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/article', 'ArticleController@index');
+Route::get('/article/{id}.html', 'ArticleController@index')->where('id', '[0-9]+');

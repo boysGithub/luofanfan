@@ -75,6 +75,7 @@ class UserController extends AdminController
         $form->image('avatar', __('头像'))->uniqueName();
         $form->text('level', __('等级'))->default('1');
         $form->text('weixin', __('微信号'));
+        $form->image('weixin_avatar', '微信二维码')->uniqueName();
         $form->text('love', __('被点赞数'))->default('124');
         $form->text('stay_count', __('评论总数'))->default('8172');
         $form->radio('sex', __('性别'))->options([1 => '男', 2 => '女']);

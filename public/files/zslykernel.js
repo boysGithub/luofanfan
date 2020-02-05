@@ -1,5 +1,6 @@
 var path_url = 'http://count.23lvxing.com';
-var error_url = 'http://super.23lvxing.com/api/message/storeSystemError';
+var get_url = 'http://lvyou.test';
+var error_url = '/api/message/storeSystemError';
 var consult_count = typeof over_count != "undefined" ? over_count : '';
 var start_time = new Date().getTime();
 var ocpc_token = null;
@@ -11,7 +12,7 @@ try{
         var data = JSON.parse(sessionStorage.getItem('zsly'+zsly[1]));
         display(data);
     } else{
-        post(path_url+'/api/getrandonewechat', {id: zsly[1],consult_count:consult_count}, display, function (xhr, status, statusText) {
+        post(get_url+'/api/getwechat', {id: zsly[1],consult_count:consult_count}, display, function (xhr, status, statusText) {
             try{
                 js_error(xhr, status, {mold:"important_mistakes",account_id:"",account_name:"",channel_id:"",channel_name:"",text:statusText},'重要错误1');
             }catch (e) {
@@ -21,7 +22,7 @@ try{
     }
 
 }catch (e) {
-    post(path_url+'/api/getrandonewechat', {id: zsly[1],consult_count:consult_count}, display, function (xhr, status, statusText) {
+    post(get_url+'/api/getwechat', {id: zsly[1],consult_count:consult_count}, display, function (xhr, status, statusText) {
         try{
             js_error(xhr, status, {mold:"important_mistakes",account_id:"",account_name:"",channel_id:"",channel_name:"",text:statusText},'重要错误2');
         }catch (e) {
@@ -119,18 +120,18 @@ function display(data) {
                     });
                 }
             }catch (e) {
-                console.log(e);
+                // console.log(e);
             }
             /*套餐价钱*/
-            try{
-                if(data.prices.length > 0){
-                    $.each(data.prices,function(i,value){
-                        $('.'+value[0]).html(value[1]);
-                    });
-                }
-            }catch (e) {
-                console.log(e);
-            }
+            // try{
+            //     if(data.prices.length > 0){
+            //         $.each(data.prices,function(i,value){
+            //             $('.'+value[0]).html(value[1]);
+            //         });
+            //     }
+            // }catch (e) {
+            //     console.log(e);
+            // }
             try{
                 $('.wechat_code_id').attr({'data-wechat_code':data.info.wxnumber,'data-wechat_id':data.info.wechat_id}).click(function(){
                     var wechat_code = $(this).data('wechat_code');
@@ -232,25 +233,25 @@ function display(data) {
             }
         }
 		/*页面logo*/
-		try{
-			if(data.copyright.company.indexOf('小飞鱼') != -1){
-				$(".cwk_logo,.xfy_logo").attr('src','http://www.23lvxing.com/img/xfy_logo.png');
-			}
-			if(data.copyright.company.indexOf('纯玩客') != -1){
-				$(".cwk_logo,.xfy_logo").attr('src','http://www.23lvxing.com/img/cwk_logo.png');
-			}
-		}catch (e) {
-			console.log(e);
-		}
+		// try{
+		// 	if(data.copyright.company.indexOf('小飞鱼') != -1){
+		// 		$(".cwk_logo,.xfy_logo").attr('src','http://www.23lvxing.com/img/xfy_logo.png');
+		// 	}
+		// 	if(data.copyright.company.indexOf('纯玩客') != -1){
+		// 		$(".cwk_logo,.xfy_logo").attr('src','http://www.23lvxing.com/img/cwk_logo.png');
+		// 	}
+		// }catch (e) {
+		// 	console.log(e);
+		// }
 		/*其它*/
-		try{
-			//$('.wxname2').html(data.copyright.subjection_nickname);
-			$(".Fcompany").text(data.copyright.company);
-			$(".Ficp").text(data.copyright.icp);
-			$(".Faddress").text(data.copyright.address);
-		}catch (e) {
-			console.log(e);
-		}
+		// try{
+		// 	//$('.wxname2').html(data.copyright.subjection_nickname);
+		// 	$(".Fcompany").text(data.copyright.company);
+		// 	$(".Ficp").text(data.copyright.icp);
+		// 	$(".Faddress").text(data.copyright.address);
+		// }catch (e) {
+		// 	console.log(e);
+		// }
     }catch (e) {
         console.log(e);
     }
@@ -284,13 +285,13 @@ function go(wechat,wechat_id,what_number) {
     var residence_time = stop_time - start_time;
 	var scroll_percent = window.zsly.scroll_percent || 0;
 	var what_number = what_number || '';
-    $.post(path_url+"/api/count", {landing_page: url, wechat: wechat, source_url: burl1, wechat_id: wechat_id, phone_model: phone_model(),residence_time:parseInt(residence_time/1000),scroll_percent:scroll_percent,what_number:what_number,ocpc_token:ocpc_token,resubmission:resubmission},function(data){
-		try {
-			typeof go_callback === "function" ? go_callback(data) : false;
-		}catch (e) {
-			console.log(e);
-		}
-	})
+    // $.post(path_url+"/api/count", {landing_page: url, wechat: wechat, source_url: burl1, wechat_id: wechat_id, phone_model: phone_model(),residence_time:parseInt(residence_time/1000),scroll_percent:scroll_percent,what_number:what_number,ocpc_token:ocpc_token,resubmission:resubmission},function(data){
+	// 	try {
+	// 		typeof go_callback === "function" ? go_callback(data) : false;
+	// 	}catch (e) {
+	// 		console.log(e);
+	// 	}
+	// })
 }
 /*POST 请求*/
 function post(url, data, success, error, debug) {
@@ -424,17 +425,17 @@ function js_error(xhr, status, statusContent, errorText){
     }
 })();
 
-try{
-	var page_url = window.location.origin+window.location.pathname;
-	post(path_url+'/api/comment/check',{page_url:page_url},function(e){
-		if(e.status == 'success' && e.ycpl=='yes'){
-			$('.ycpl').hide();
-			$('.articleinfos').hide();
-		}
-	});
-}catch(e){
-  //TODO handle the exception
-}
+// try{
+// 	var page_url = window.location.origin+window.location.pathname;
+// 	post(path_url+'/api/comment/check',{page_url:page_url},function(e){
+// 		if(e.status == 'success' && e.ycpl=='yes'){
+// 			$('.ycpl').hide();
+// 			$('.articleinfos').hide();
+// 		}
+// 	});
+// }catch(e){
+//   //TODO handle the exception
+// }
 
 try{
 	// 页面总高
@@ -449,7 +450,7 @@ try{
 		// 滚动条卷去高度
 		var scrollH = document.body.scrollTop || document.documentElement.scrollTop
 		// 百分比
-		
+
 		window.zsly.scroll_percent = scrollH >= validH ? 100 : (scrollH/validH*100).toFixed(0);
 	})
 }catch(e){

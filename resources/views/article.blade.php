@@ -8,12 +8,12 @@
     <title>{{ $article->web_title }}</title>
     <meta name="keywords" content="{{ $article->keywords ?? '旅游' }}">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="./files/01.css">
-    <link rel="stylesheet" href="./files/barrager.css">
-    <link rel="stylesheet" href="./files/layer.css" />
-    <script type="text/javascript" src="./files/jquery.min.js"></script>
-    <script src="./files/layer.js"></script>
-    <script type="text/javascript" src="./files/jquery.barrager.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/files/01.css">
+    <link rel="stylesheet" href="/files/barrager.css">
+    <link rel="stylesheet" href="/files/layer.css" />
+    <script type="text/javascript" src="/files/jquery.min.js"></script>
+    <script src="/files/layer.js"></script>
+    <script type="text/javascript" src="/files/jquery.barrager.min.js"></script>
 
 </head>
 
@@ -35,16 +35,16 @@
             <div class="body-head-middle-right mhide">
                 <div class="search">
                     <input type="" name="" id="" value="" placeholder="搜索攻略、问答">
-                    <img src="./files/searchbtn.png" class="searchbtn" style="cursor: pointer;">
+                    <img src="/files/searchbtn.png" class="searchbtn" style="cursor: pointer;">
                 </div>
                 <div class="headicon qq" style="margin-right: 20px;"></div>
                 <div class="headicon weibo" style="margin-right: 30px;"></div>
             </div>
             <div class="body-head-m-box pchide">
-                <img class="body-head-m-avatar whimg" src="./files/a01.jpg">
+                <img class="body-head-m-avatar whimg" src="/files/a01.jpg">
                 <span style="color: white;" onclick="jumpj(&#39;top&#39;)"></span>
                 <div class="body-head-m-menu">
-                    <img class="body-head-m-menu" src="./files/menu.png">
+                    <img class="body-head-m-menu" src="/files/menu.png">
                     <ul class="body-head-m-ul">
                         <li onclick="jumpj(&#39;top&#39;)"><span>首&nbsp;&nbsp;页</span></li>
                         <li onclick="jumpj(ask)"><span>评&nbsp;&nbsp;论</span></li>
@@ -55,30 +55,30 @@
             </div>
         </div>
     </div>
-    <div class="body-banana">
+    <div class="body-banana" style="background-image: url('/storage/{{$article->bg_img}}')">
         <div class="avatar-box">
-            <img class="mhide bannerHD" src="storage/{{$article->bg_img}}" style="position: absolute;left:-46%">
+            <img class="mhide bannerHD" src="/storage/{{$article->bg_img}}" style="position: absolute;left:-46%">
             <div class="avatar-middle">
-                <div class="avatar">
-                    <div class="avatar-left">
+                <div class="avatar" style="width:100%;">
+                    <div class="avatar-left" style="width:100%;">
                         <div class="avatar-left-title">
                             <span>{{$article->title}}</span>
                         </div>
                         <div class="avatar-left-icon">
                             <div>
-                                <img src="./files/timeicon.png">
+                                <img src="/files/timeicon.png">
                                 <span>{{$article->trip}}天</span>
                             </div>
                             <div>
-                                <img src="./files/dateicon.png">
+                                <img src="/files/dateicon.png">
                                 <span><span class="thisMonth">{{$article->method}}</span>月</span>
                             </div>
                             <div>
-                                <img src="./files/casticon.png">
+                                <img src="/files/casticon.png">
                                 <span>人均{{$article->cost}}</span>
                             </div>
                             <div>
-                                <img src="./files/tripicon.png">
+                                <img src="/files/tripicon.png">
                                 <span>{{$article->type}}</span>
                             </div>
                         </div>
@@ -132,16 +132,16 @@
                     <div class="avatar-right">
                         <div class="avatar-right-head">
                             <div class="avatar-right-head-img JJLin" style="cursor: pointer;">
-                                <img class="vipicon" src="./files/VIP.png">
-                                <img class="avataricon whimg" src="./files/a01.jpg">
+                                <img class="vipicon" src="/files/VIP.png">
+                                <img class="avataricon whimg" src="/files/a01.jpg">
                             </div>
                         </div>
                         <span class="wxname"></span>
                         <div class="avatar-right-info">
-                            <img src="./files/like.png">
-                            <span style="margin-right: 34px;">8586</span>
-                            <img src="./files/chat.png">
-                            <span>7320</span>
+                            <img src="/files/like.png">
+                            <span style="margin-right: 34px;">{{ $article->user->love }}</span>
+                            <img src="/files/chat.png">
+                            <span>{{ $article->user->stay_count }}</span>
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
         @endforeach
 {{--        <div class="item">--}}
 {{--            <div class="mcimg">--}}
-{{--                <img src="./files/02.jpg" style="width:100%;">--}}
+{{--                <img src="/files/02.jpg" style="width:100%;">--}}
 {{--            </div>--}}
 {{--        </div>--}}
         <div class="item" id="xctitle">
@@ -252,8 +252,8 @@
         @endforeach
 {{--        <div class="item">--}}
 {{--            <div class="mcimg">--}}
-{{--                <img src="./files/06.jpg">--}}
-{{--                <img src="./files/07.jpg">--}}
+{{--                <img src="/files/06.jpg">--}}
+{{--                <img src="/files/07.jpg">--}}
 {{--            </div>--}}
 
 {{--        </div>--}}
@@ -267,7 +267,7 @@
 {{--            <p>要去黄果树瀑布了有点激动！一早<span class="bnname"></span>管家<span class="wxname"></span>就到酒店来接我们了，早餐后直奔黄果树瀑布！管家已经提前帮我们预定好了观光车，so朝着大瀑布前进。还没靠近就听到了巨大的水声，亲眼看到瀑布后真的充分感受到了大自然的神奇，还可以从上、下、前、后、左、右六个方位进行观赏瀑布，西游记的水帘洞就在瀑布的后面。站在瀑布面前，大自然的震撼和感动之情混杂在一起，甚至有点美得让人说不出话来。</p>--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
-{{--            <img src="./files/08.jpg">--}}
+{{--            <img src="/files/08.jpg">--}}
 {{--        </div>--}}
 {{--        <div class="item" id="tiao1">--}}
 {{--            <div class="title-box2">--}}
@@ -280,14 +280,14 @@
 {{--        </div>--}}
 {{--        <div class="item">--}}
 {{--            <div class="mcimg">--}}
-{{--                <img src="./files/09.jpg" style="width:100%;">--}}
+{{--                <img src="/files/09.jpg" style="width:100%;">--}}
 {{--            </div>--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
 {{--            <p>然后晚上到达西江千户苗寨，管家给我们安排入住的是苗寨特色吊脚楼，晚上登观景台看万家灯火夜景，俯瞰整个苗寨，夜晚的苗寨变得宁静，增添了一份静谧的感动。 如果大家想住苗寨看夜景感受苗族文化的话可以联系一下<span class="bnname"></span>的<span class="wxname"></span>管家，这是<span class="wsex">他</span>的微信<span class="weixin"></span>，有需要就添加哦。</p>--}}
 {{--        </div>--}}
 {{--        <div class="item" id="tiao3">--}}
-{{--            <img src="./files/12.jpg">--}}
+{{--            <img src="/files/12.jpg">--}}
 {{--        </div>--}}
 {{--        <div class="item" id="tiao2">--}}
 {{--            <div class="title-box2">--}}
@@ -299,15 +299,15 @@
 {{--            <p>早起在寨子里面逛逛，白天苗寨揭开了神秘的面纱，苗寨四面环山，重峦叠嶂，梯田依山顺势直连云天，白水河穿寨而过，将西江苗寨一分为二。寨内吊脚楼层层叠叠，顺山势而建，又连绵成片，阳光明媚的早晨，清晨的第一缕阳光似乎可以照进每个人的心窝。</p>--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
-{{--            <img src="./files/13.jpg">--}}
+{{--            <img src="/files/13.jpg">--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
 {{--            <p>在苗寨里吃饭绝对是一大亮点，“高山流水”酒是苗寨热情的一种待客礼仪，就是一边喝一边倒。在贵州雷山流传一首歌“来到苗乡先品酒，你喜欢也要喝，不喜欢也要喝，管你喜欢不喜欢都要喝，你喜欢喝一杯，不喜欢喝三杯……”。当然，如果你真的喝不下了不要用手去托碗，用手碰碗示意是要把酒喝完的意思，你可以摇摇手表示自己喝不下了，哈哈，考验你酒量的时候来了！来看看同伴们的“高山流水”。永远记得那句“干一杯呀干一杯”。</p>--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
 {{--            <div class="mcimg">--}}
-{{--                <img src="./files/14.jpg">--}}
-{{--                <img src="./files/15.jpg">--}}
+{{--                <img src="/files/14.jpg">--}}
+{{--                <img src="/files/15.jpg">--}}
 {{--            </div>--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
@@ -320,13 +320,13 @@
 {{--            <p>梵净山是贵州独特的一个地标，是黔东灵山，是生态王国，是风景胜地，是一方净土。2018年7月2日，铜仁梵净山成功列入了世界自然遗产名录，梵净山申遗的成功让更多的人知道了这个佛教胜地，到这里一票难求。我们去的时候人挺多的，排队上山就花了一个多钟，为了看风景不留下遗憾，排队也值了。</p>--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
-{{--            <img src="./files/16.jpg">--}}
+{{--            <img src="/files/16.jpg">--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
 {{--            <p>特别提醒哦，乘坐索道一定要提前预定好！现场买票至少要排队两小时，而且很有可能没票！还好我们有<span class="bnname"></span>金牌管家<span class="wxname"></span>帮我们提前预定了，到达梵净山就直接乘坐索道开始了浪漫旅行，旁边的小年轻没买到票急得都吵架了哈哈~大家有要去贵州旅行的，不如直接找我们的<span class="bnname"></span>金牌管家<span class="wxname"></span>吧，给你们安排得明明白白~微信 <span class="weixin"></span>（←点击复制微信）</p>--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
-{{--            <img src="./files/17.jpg">--}}
+{{--            <img src="/files/17.jpg">--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
 {{--            <div class="title-box2">--}}
@@ -338,20 +338,20 @@
 {{--            <p>具有2000多年的历史，是贵州省黔东南苗族侗族自治州镇远县名镇，位于舞阳河畔，四周皆山，河水蜿蜒，以"S"形穿城而过。镇远古镇是不需要门票的，但是里面的小景点都是需要另外购票的。如：舞阳河、石屏山、铁溪古城。</p>--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
-{{--            <img src="./files/18.jpg">--}}
+{{--            <img src="/files/18.jpg">--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
 {{--            <p>或许会有人问买门票值不值？我个人认为值得，来到镇远古镇，不去了解这里的历史，不走进<span class="wsex">他</span>的怀抱，不在舞阳河乘船泛舟看浆声灯影的镇远，怎么能了解这座古城，所以还是值得的。</p>--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
-{{--            <img src="./files/19.jpg">--}}
+{{--            <img src="/files/19.jpg">--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
 {{--            <p>这次贵州之旅玩得很开心，真心感谢——<span class="bnname"></span>的<span class="wxname"></span>管家的热情服务及周到安排，想要玩得省心省钱的朋友，可以联系<span class="wsex">他</span><span class="weixin"></span>重要的是苗阿妹<span class="wxname"></span>管家对贵州特别熟，没带我们走弯路，全程没有购物也没有隐形消费，非常热情，有问必答，专业的事交给专业的人做，相对于自己瞎逛要省心很多。这次九人贵州之旅可以说是很完美了。在<span class="wsex">他</span>的推荐下，我们也品尝到了很多之前没有吃过的特色美食，希望下次再来贵州时，<span class="bnname"></span>金牌管家<span class="wxname"></span>可以为我们安排更多的特色景点啦。</p>--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
-{{--            <img src="./files/20.jpg">--}}
-{{--            <img src="./files/20-1.jpg">--}}
+{{--            <img src="/files/20.jpg">--}}
+{{--            <img src="/files/20-1.jpg">--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
 {{--            <p>自从上次分享游记之后，很多人都来问我：“<span class="bnname"></span>金牌管家<span class="wxname"></span>是谁？”“你都去过好几次了，为什么还要找人啊？”<br>--}}
@@ -366,7 +366,7 @@
 {{--                这趟行程，总共6天5晚，个人总花费才1800左右，吃住行和门票都由<span class="bnname"></span>金牌管家<span class="wxname"></span>帮我们安排，没有购物和隐形消费，全程带着我们九个人玩，不仅玩的开心还玩的超级划算！！</p>--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
-{{--            <img src="./files/21.jpg">--}}
+{{--            <img src="/files/21.jpg">--}}
 {{--        </div>--}}
         <div class="item">
             <div class="span-box">
@@ -394,7 +394,7 @@
 {{--                6、贵州的少数民族较多，特别是黔东南一带，要尊重他们的生活和信仰，避免与当地居民发生冲突。比如苗族人好客，敬酒表示对客人的欢迎，有可能会让客人喝很多酒，如果不能喝一定要对他们说明。</p>--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
-{{--            <img src="./files/22.jpg">--}}
+{{--            <img src="/files/22.jpg">--}}
 {{--        </div>--}}
 {{--        <div class="item">--}}
 {{--            <p>贵州多数地方处于山地和高原，气候多变，山路崎岖，多少数民族聚居，以上的事情都需要注意。</p>--}}
@@ -416,7 +416,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a01(1).jpg">
+                    <img src="/files/a01(1).jpg">
                     <span>老桐0740</span>
                     <span>LV.12</span>
                 </div>
@@ -433,7 +433,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a02.jpg">
+                    <img src="/files/a02.jpg">
                     <span>澄澄游世界</span>
                     <span>LV.15</span>
                 </div>
@@ -447,7 +447,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a03.jpg">
+                    <img src="/files/a03.jpg">
                     <span>拜托了2019年</span>
                     <span>LV.12</span>
                 </div>
@@ -461,7 +461,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a04.jpg">
+                    <img src="/files/a04.jpg">
                     <span>王叁無</span>
                     <span>LV.82</span>
                 </div>
@@ -472,14 +472,14 @@
                     两个字“地道”辣儿爽！！！感谢<span class="wxname"></span>管家给了我们一次完美的旅行。</p>
             </div>
             <div class="chat-item">
-                <img src="./files/23.jpg">
+                <img src="/files/23.jpg">
             </div>
         </div>
 
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a05.jpg">
+                    <img src="/files/a05.jpg">
                     <span>柠n檬mm不萌</span>
                     <span>LV.56</span>
                 </div>
@@ -493,7 +493,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a06.jpg">
+                    <img src="/files/a06.jpg">
                     <span>旺崽cattt</span>
                     <span>LV.69</span>
                 </div>
@@ -507,7 +507,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a04.jpg">
+                    <img src="/files/a04.jpg">
                     <span>王叁無</span>
                     <span>LV.48</span>
                 </div>
@@ -520,7 +520,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a07.jpg">
+                    <img src="/files/a07.jpg">
                     <span>Patrick_嘉</span>
                     <span>LV.12</span>
                 </div>
@@ -533,7 +533,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a02.jpg">
+                    <img src="/files/a02.jpg">
                     <span>澄澄游世界</span>
                     <span>LV.15</span>
                 </div>
@@ -546,7 +546,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a07.jpg">
+                    <img src="/files/a07.jpg">
                     <span>Patrick_嘉</span>
                     <span>LV.12</span>
                 </div>
@@ -559,7 +559,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a08.jpg">
+                    <img src="/files/a08.jpg">
                     <span>章鱼姐</span>
                     <span>LV.17</span>
                 </div>
@@ -572,7 +572,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a09.jpg">
+                    <img src="/files/a09.jpg">
                     <span>东东大东东</span>
                     <span>LV.19</span>
                 </div>
@@ -585,7 +585,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a10.jpg">
+                    <img src="/files/a10.jpg">
                     <span>sunny</span>
                     <span>LV.19</span>
                 </div>
@@ -598,7 +598,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a11.jpg">
+                    <img src="/files/a11.jpg">
                     <span>吃货最美丽</span>
                     <span>LV.22</span>
                 </div>
@@ -611,7 +611,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a12.jpg">
+                    <img src="/files/a12.jpg">
                     <span>芥茉柚子茶</span>
                     <span>LV.39</span>
                 </div>
@@ -624,7 +624,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a13.jpg">
+                    <img src="/files/a13.jpg">
                     <span>罗伊小公举</span>
                     <span>LV.39</span>
                 </div>
@@ -638,7 +638,7 @@
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="./files/a14.jpg">
+                    <img src="/files/a14.jpg">
                     <span>如昨</span>
                     <span>LV.39</span>
                 </div>
@@ -677,29 +677,29 @@
         </div>
         <div class="body-bot-info">
             <div class="body-bot-info-item">
-                <img src="./files/bot-01.jpg">
+                <img src="/files/bot-01.jpg">
                 <div>一起去祖国的贵州游...</div>
             </div>
             <div class="body-bot-info-item">
-                <img src="./files/bot-02.jpg">
+                <img src="/files/bot-02.jpg">
                 <div>初到贵州，不容错过的景点及玩法...</div>
             </div>
             <div class="body-bot-info-item">
-                <img src="./files/bot-03.jpg">
+                <img src="/files/bot-03.jpg">
                 <div>贵州城市徒步路线，一站打卡网红...</div>
             </div>
         </div>
         <div class="body-bot-info">
             <div class="body-bot-info-item">
-                <img src="./files/bot-04.jpg">
+                <img src="/files/bot-04.jpg">
                 <div>看美景，贵州各种美食也...</div>
             </div>
             <div class="body-bot-info-item">
-                <img src="./files/bot-05.jpg">
+                <img src="/files/bot-05.jpg">
                 <div>贵州攻略，各种注意事项自...</div>
             </div>
             <div class="body-bot-info-item">
-                <img src="./files/bot-06.jpg">
+                <img src="/files/bot-06.jpg">
                 <div>贵州最好玩的景点你还没去过？这...</div>
             </div>
         </div>
@@ -804,15 +804,15 @@
 <div class="about_us">
     <div class="about_us_info">
         <div class="about_us_info_head">
-            <img src="./files/bg2.jpg">
+            <img src="/files/bg2.jpg">
             <span><span class="wxname2"></span>简介</span>
-            <img src="./files/bg2.jpg">
+            <img src="/files/bg2.jpg">
         </div>
         <div class="about_us_info_body">
             <span class="wxname2"></span>是一家由土生土长的当地人创办的第1家导游人自己的团队，提倡向导式半自助游：1个家庭1台小车1个向导1段快乐旅途！<span class="wxname2"></span>的特色就是不固定行程、不限游览时间、不怕被坑被宰，还可以借助导游渠道享受折扣门票，旅游不仅省钱又省心！<span class="wxname2"></span>均是一群人均25岁的当地少数名族，个个都积极阳光、会唱山歌、会讲故事、重视服务，为每一个来贵州的朋友提供放心、舒心、安心的各种旅游服务，涵盖旅游导览、行程咨询、代订门票酒店等服务。<span class="wxname2"></span>的导游均来自有正规国证的旅行社“退役”的金牌导游，他们坚定的跳出充满无奈而又冰冷的旅行社行业，只因为坚守自己的最初的梦想：让游客朋友”开开心心游玩，快快乐乐回家“！
         </div>
         <div class="about_us_info_img">
-            <img src="./files/img46.jpg">
+            <img src="/files/img46.jpg">
         </div>
         <div class="about_us_close">X</div>
     </div>
@@ -820,9 +820,9 @@
 <div class="history">
     <div class="history_info">
         <div class="history_info_head">
-            <img src="./files/bg2.jpg">
+            <img src="/files/bg2.jpg">
             <span>品牌故事</span>
-            <img src="./files/bg2.jpg">
+            <img src="/files/bg2.jpg">
         </div>
         <div class="history_info_body">
             <p><span class="wxname"></span>作为贵州土生土长的本地人，对这里的每一种风俗、每一个故事、每一个景点都了如指掌，为了能让更多的人了解贵州，了解自己家乡的旅游特色，<span class="wxname"></span>偶尔会在网上发些关于贵州的旅游、景点、民俗信息，于是有人开始咨询<span class="wsex">他</span>关于贵州旅游的事项，还有些人提出来请<span class="wsex">他</span>当向导，这让<span class="wxname"></span>心里萌生了一种想法——以个人的名义去做贵州半自助游。</p>
@@ -831,14 +831,14 @@
             <p><span class="wxname2"></span>团队作为贵州自由行服务行业的领头羊，<span class="wxname2"></span>始终铭记“倡导高品质管家式自助游”的初衷，致力于为每一个游客朋友提供自由、省心、实惠、有意义的管家式旅游生活服务。</p>
 
             <p>欢迎大家到贵州玩，<span class="wxname"></span>在贵州等你们哦!</p>
-            <p style="text-align: center;margin-top: 10px;"><img src="./files/img47.jpg"></p>
+            <p style="text-align: center;margin-top: 10px;"><img src="/files/img47.jpg"></p>
 
         </div>
         <div class="history_close">X</div>
     </div>
 </div>
 
-<script src="./files/clipboard.min.js"></script>
+<script src="/files/clipboard.min.js"></script>
 <script>
     function goLink(){
         var $xc = $("#xctitle").offset().top;
@@ -849,7 +849,7 @@
     }
 </script>
 <script>
-    var zsly = ['pc',91];
+    var zsly = ['pc', {{$article->uid}}];
     function get_wx_callback(data) {
         $('#a_wx').attr({'data-wechat_code':data.info.wxnumber,'data-wechat_id':data.info.wechat_id});
     }
@@ -865,8 +865,9 @@
         layer.msg("复制失败,请手动复制",{time:1000,shadeClose:true,end:function(){return false;}});
     });
 </script>
+<script src="/files/zslykernel.js"></script>
 {{--<script src="http://count.23lvxing.com/static/js/zslykernel.js"></script>--}}
-{{--<script type="text/javascript" src="./files/jop1.js"></script>--}}
+{{--<script type="text/javascript" src="/files/jop1.js"></script>--}}
 <script>
     var _scrollTop=0;
     var tipTime;
