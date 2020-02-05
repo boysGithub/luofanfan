@@ -10,6 +10,8 @@ class UserController extends Controller
 {
     public function getWeChatInfo(Request $request)
     {
+
+
         $validatedData = Validator::make($request->all(), [
             'id' => 'required|integer|min:1|max:10000'
         ]);

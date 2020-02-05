@@ -44,6 +44,14 @@ class ArticleController extends AdminController
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('修改时间'));
 
+        // 去掉不必要的操作
+        $grid->actions(function ($actions) {
+            // 去掉删除
+            $actions->disableDelete();
+            // 去掉查看
+            $actions->disableView();
+        });
+
         return $grid;
     }
 
@@ -81,7 +89,7 @@ class ArticleController extends AdminController
     protected function form()
     {
         $form = new Form(new Article());
-        $user = User::all();
+        $user = User::where('type', 1)->get();
         $form->setView('admin.from');
         $form->fieldset('网站信息设置', function (Form $form) {
             $form->text('web_title', __('网页头设置'))->required();

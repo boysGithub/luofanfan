@@ -15,9 +15,8 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('avatar')->comment('头像');
-            $table->string('name')->comment('名称');
-            $table->string('level')->comment('等级');
+            $table->integer('article_id')->comment('文章id');
+            $table->integer('user_id')->comment('用户id');
             $table->text('content')->comment('内容');
             $table->timestamps();
         });

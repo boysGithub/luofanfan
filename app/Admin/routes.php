@@ -13,4 +13,5 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('articles', ArticleController::class);
     $router->resource('users', UserController::class);
+    $router->resource('comments', CommentController::class);
 });
