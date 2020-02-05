@@ -1,4 +1,5 @@
 var path_url = 'http://count.23lvxing.com';
+var get_url = 'http://lv.lpl.app';
 var error_url = '/api/message/storeSystemError';
 var consult_count = typeof over_count != "undefined" ? over_count : '';
 var start_time = new Date().getTime();
