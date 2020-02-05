@@ -413,241 +413,252 @@
             </div>
             <span class="contact-blue chatbtm" style="width: 98px;" onclick="jumpj(&#39;.chat-item-input&#39;)">发表评论</span>
         </div>
+        @foreach($article->comment as $key => $comment)
         <div class="chat-item-box">
             <div class="chat-item-head">
                 <div class="chat-avatar">
-                    <img src="/files/a01(1).jpg">
-                    <span>老桐0740</span>
-                    <span>LV.12</span>
+                    <img src="/storage/{{$comment->user->avatar}}">
+                    <span>{{ $comment->user->name }}</span>
+                    <span>LV.{{ $comment->user->level }}</span>
                 </div>
                 <span>2019-<span class="thisMonth">06</span>-<span class="thisDay2">8</span></span>
             </div>
-            <div class="chat-item-body">
-                <p>您好，你们的6天线路1800多的费用是包含景点门票住宿用餐了吗？玩得怎么样？第一次去不想留什么遗憾谢啦。</p>
-            </div>
-            <!--<div class="chat-item">
-                          <img src="img/12.jpg" />
-                      </div>-->
+            @foreach($article->item_comment[$key]['content'] as $val)
+                @if ($num = preg_match_all('/<img/', $val))
+                    <div class="chat-item">
+                        {!! $val !!}
+                    </div>
+                @else
+                    <div class="chat-item-body">
+                        {!! $val !!}
+                    </div>
+                @endif
+{{--                <div class="chat-item-body">--}}
+{{--                    {!! $comment->content !!}--}}
+{{--    --}}{{--                <p>您好，你们的6天线路1800多的费用是包含景点门票住宿用餐了吗？玩得怎么样？第一次去不想留什么遗憾谢啦。</p>--}}
+{{--                </div>--}}
+            @endforeach
         </div>
+        @endforeach
 
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a02.jpg">
-                    <span>澄澄游世界</span>
-                    <span>LV.15</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay2">8</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p><b>@老桐0740：</b>是的，都是包含的，吃住行都非常不错，玩得也很赞。这个行程性价比很高！<span class="bnname"></span>是专门接待像我们这种结伴游、半自由行的客人的，个人觉得<span class="wsex">他</span>们优点就是服务好、收费公道，而且管家还可以根据我们的需求喜好帮我们推荐或定制行程。你如果要去的话可以提前联系，加微信聊很方便，把<span class="wsex">他</span>微信推给你<span class="weixin"></span> ，有什么不懂的都可以问。</p>
-            </div>
-        </div>
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a02.jpg">--}}
+{{--                    <span>澄澄游世界</span>--}}
+{{--                    <span>LV.15</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay2">8</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p><b>@老桐0740：</b>是的，都是包含的，吃住行都非常不错，玩得也很赞。这个行程性价比很高！<span class="bnname"></span>是专门接待像我们这种结伴游、半自由行的客人的，个人觉得<span class="wsex">他</span>们优点就是服务好、收费公道，而且管家还可以根据我们的需求喜好帮我们推荐或定制行程。你如果要去的话可以提前联系，加微信聊很方便，把<span class="wsex">他</span>微信推给你<span class="weixin"></span> ，有什么不懂的都可以问。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a03.jpg">
-                    <span>拜托了2019年</span>
-                    <span>LV.12</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay2">8</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>刚从贵州回来，去网红景点打卡了。</p>
-            </div>
-        </div>
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a03.jpg">--}}
+{{--                    <span>拜托了2019年</span>--}}
+{{--                    <span>LV.12</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay2">8</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>刚从贵州回来，去网红景点打卡了。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a04.jpg">
-                    <span>王叁無</span>
-                    <span>LV.82</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay2">8</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>是阿，楼主我觉得你说得很对，个人觉得6天时间玩遍贵州差不多了，我们当时去贵州也是叫<span class="wxname"></span>管家给安排的行程，跟你走的景点差不多，此次贵州这个行程总体感觉：省心，一眼望去，都是绿意，就是享受度假、超放松的感觉，从繁忙的现实世界中抽离....为我们服务的旅行管家很是辛苦......难忘的是：贵州菜
-                    两个字“地道”辣儿爽！！！感谢<span class="wxname"></span>管家给了我们一次完美的旅行。</p>
-            </div>
-            <div class="chat-item">
-                <img src="/files/23.jpg">
-            </div>
-        </div>
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a04.jpg">--}}
+{{--                    <span>王叁無</span>--}}
+{{--                    <span>LV.82</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay2">8</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>是阿，楼主我觉得你说得很对，个人觉得6天时间玩遍贵州差不多了，我们当时去贵州也是叫<span class="wxname"></span>管家给安排的行程，跟你走的景点差不多，此次贵州这个行程总体感觉：省心，一眼望去，都是绿意，就是享受度假、超放松的感觉，从繁忙的现实世界中抽离....为我们服务的旅行管家很是辛苦......难忘的是：贵州菜--}}
+{{--                    两个字“地道”辣儿爽！！！感谢<span class="wxname"></span>管家给了我们一次完美的旅行。</p>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item">--}}
+{{--                <img src="/files/23.jpg">--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a05.jpg">
-                    <span>柠n檬mm不萌</span>
-                    <span>LV.56</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>你们说的景点都很想去，因为这次是带着家人出去旅游，有老人也有小孩，想省点事，自己去太麻烦，看了大家的介绍感觉挺好的，可以推荐下<span class="bnname"></span>旅游管家的联系方式吗？</p>
-            </div>
-        </div>
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a05.jpg">--}}
+{{--                    <span>柠n檬mm不萌</span>--}}
+{{--                    <span>LV.56</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>你们说的景点都很想去，因为这次是带着家人出去旅游，有老人也有小孩，想省点事，自己去太麻烦，看了大家的介绍感觉挺好的，可以推荐下<span class="bnname"></span>旅游管家的联系方式吗？</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a06.jpg">
-                    <span>旺崽cattt</span>
-                    <span>LV.69</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>我想咨询一下，<span class="bnname"></span>团队有时间比较短的行程吗？比如3天2晚的。</p>
-            </div>
-        </div>
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a06.jpg">--}}
+{{--                    <span>旺崽cattt</span>--}}
+{{--                    <span>LV.69</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>我想咨询一下，<span class="bnname"></span>团队有时间比较短的行程吗？比如3天2晚的。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a04.jpg">
-                    <span>王叁無</span>
-                    <span>LV.48</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>统一回答一下！本来为了避免广告嫌疑，是没打算发微信号的。但是看到很多朋友都想了解苗阿妹给我们安排的这个行程，再加上管家安排的行程服务确实很好，就帮宣传一下，如果大家想去贵州旅游可以加<span class="bnname"></span><span class="wxname"></span>管家的微信 <span class="weixin"></span>咨询。</p>
-            </div>
-        </div>
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a07.jpg">
-                    <span>Patrick_嘉</span>
-                    <span>LV.12</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>现在去的话不知道人多不多，我想带着孩子过去呢~~</p>
-            </div>
-        </div>
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a02.jpg">
-                    <span>澄澄游世界</span>
-                    <span>LV.15</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p><b>@Patrick_嘉：</b>贵州旅游的话人应该不是很多，反正之前我们去的时候还好。不过我也不是很清楚，你加下微信咨询下吧，<span class="wsex">他</span>比较专业。反正咨询又不花钱，了解清楚也好过在网上胡乱找攻略强。</p>
-            </div>
-        </div>
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a07.jpg">
-                    <span>Patrick_嘉</span>
-                    <span>LV.12</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>好的好的，谢谢。</p>
-            </div>
-        </div>
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a08.jpg">
-                    <span>章鱼姐</span>
-                    <span>LV.17</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>是的，是的，贵州旅游找苗阿妹安排就是放心，老婆夸<span class="wsex">他</span>100分，吃住都安排很好很热情，整个行程至少省了有1000多块钱，关键是不累，赞一个！贵州旅游咨询找<span class="wsex">他</span>问比看攻略省心多了。</p>
-            </div>
-        </div>
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a09.jpg">
-                    <span>东东大东东</span>
-                    <span>LV.19</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>真的是缘分，我们也是上个月才从贵州旅游回来，就是找<span class="bnname"></span>报的团。我是在动车上听到有一对小情侣在说旅游的事，打听了一下大概的情况。火车上加的<span class="wxname"></span>管家的微信。聊了10多分钟吧，就定了5日游的团，玩得也很好，黄果树瀑布一定要去！！我现在都推荐我朋友去贵州旅游就找<span class="bnname"></span>。确实很好。</p>
-            </div>
-        </div>
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a10.jpg">
-                    <span>sunny</span>
-                    <span>LV.19</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>个人总结：贵州游主要是山水体验，出门前找攻略看游记，到地方还是一头雾水，找不着路，搭错车，吃饭被宰，住宿被坑，后悔在家的时候没有提前预定，浪费时间还花了很多冤枉钱，都是经验教训啊，建议楼主去贵州玩的话还是找个当地人带着玩比较好。</p>
-            </div>
-        </div>
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a11.jpg">
-                    <span>吃货最美丽</span>
-                    <span>LV.22</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p><b>@sunny：</b>这么可怕的吗？那俺还是先加楼上推荐的导游先问问吧。</p>
-            </div>
-        </div>
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a12.jpg">
-                    <span>芥茉柚子茶</span>
-                    <span>LV.39</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>去贵州旅游那边最好是选择散客结伴行自由行比较好，报团游就是走马观花加进购物店，自己去玩可能又玩不到精髓的景点，景点之间距离远搭车找路累得够呛。之前去过贵州的一个朋友也是向我推荐<span class="bnname"></span>的行程规划师<span class="wxname"></span>，设计了专属的行程旅游方案，玩的很开心。在这里把<span class="wsex">他</span>推荐给大家 微信 <span class="weixin"></span> 。</p>
-            </div>
-        </div>
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a13.jpg">
-                    <span>罗伊小公举</span>
-                    <span>LV.39</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>去年腊月22我去了贵州旅游，趁着放年假就带家人出去走走，春节旅游旺季，5天平均一人1600多的行程<span class="bnname"></span>的<span class="wxname"></span>导游还给省了零头，玩得还挺不错的，因为带有老人和小孩，出行有专车接送方便很多，住的酒店也很不错，而且管家也很照顾我的家人，旅行途中有很多不懂的地方都会及时耐心给我们解答，旅行途中还帮我们拎东西、拍照，说话风趣幽默，人很好哦，这是<span class="wsex">他</span>的微信 <span class="weixin"></span><br>
-                    上次回来的时候还说要给<span class="wsex">他</span>介绍朋友过去的，有需要的朋友可以加<span class="wsex">他</span>微信呦。</p>
-            </div>
-        </div>
-        <div class="chat-item-box">
-            <div class="chat-item-head">
-                <div class="chat-avatar">
-                    <img src="/files/a14.jpg">
-                    <span>如昨</span>
-                    <span>LV.39</span>
-                </div>
-                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>
-            </div>
-            <div class="chat-item-body">
-                <p>刚旅游完，现在还在回老家的车上，大家介绍的导游安排的确实很好，很负责任也很热心，有时候晚上11点多联系都会回消息给我，挺不错的吧。</p>
-            </div>
-        </div>
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a04.jpg">--}}
+{{--                    <span>王叁無</span>--}}
+{{--                    <span>LV.48</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>统一回答一下！本来为了避免广告嫌疑，是没打算发微信号的。但是看到很多朋友都想了解苗阿妹给我们安排的这个行程，再加上管家安排的行程服务确实很好，就帮宣传一下，如果大家想去贵州旅游可以加<span class="bnname"></span><span class="wxname"></span>管家的微信 <span class="weixin"></span>咨询。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a07.jpg">--}}
+{{--                    <span>Patrick_嘉</span>--}}
+{{--                    <span>LV.12</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>现在去的话不知道人多不多，我想带着孩子过去呢~~</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a02.jpg">--}}
+{{--                    <span>澄澄游世界</span>--}}
+{{--                    <span>LV.15</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p><b>@Patrick_嘉：</b>贵州旅游的话人应该不是很多，反正之前我们去的时候还好。不过我也不是很清楚，你加下微信咨询下吧，<span class="wsex">他</span>比较专业。反正咨询又不花钱，了解清楚也好过在网上胡乱找攻略强。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a07.jpg">--}}
+{{--                    <span>Patrick_嘉</span>--}}
+{{--                    <span>LV.12</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>好的好的，谢谢。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a08.jpg">--}}
+{{--                    <span>章鱼姐</span>--}}
+{{--                    <span>LV.17</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>是的，是的，贵州旅游找苗阿妹安排就是放心，老婆夸<span class="wsex">他</span>100分，吃住都安排很好很热情，整个行程至少省了有1000多块钱，关键是不累，赞一个！贵州旅游咨询找<span class="wsex">他</span>问比看攻略省心多了。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a09.jpg">--}}
+{{--                    <span>东东大东东</span>--}}
+{{--                    <span>LV.19</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>真的是缘分，我们也是上个月才从贵州旅游回来，就是找<span class="bnname"></span>报的团。我是在动车上听到有一对小情侣在说旅游的事，打听了一下大概的情况。火车上加的<span class="wxname"></span>管家的微信。聊了10多分钟吧，就定了5日游的团，玩得也很好，黄果树瀑布一定要去！！我现在都推荐我朋友去贵州旅游就找<span class="bnname"></span>。确实很好。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a10.jpg">--}}
+{{--                    <span>sunny</span>--}}
+{{--                    <span>LV.19</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>个人总结：贵州游主要是山水体验，出门前找攻略看游记，到地方还是一头雾水，找不着路，搭错车，吃饭被宰，住宿被坑，后悔在家的时候没有提前预定，浪费时间还花了很多冤枉钱，都是经验教训啊，建议楼主去贵州玩的话还是找个当地人带着玩比较好。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a11.jpg">--}}
+{{--                    <span>吃货最美丽</span>--}}
+{{--                    <span>LV.22</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p><b>@sunny：</b>这么可怕的吗？那俺还是先加楼上推荐的导游先问问吧。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a12.jpg">--}}
+{{--                    <span>芥茉柚子茶</span>--}}
+{{--                    <span>LV.39</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>去贵州旅游那边最好是选择散客结伴行自由行比较好，报团游就是走马观花加进购物店，自己去玩可能又玩不到精髓的景点，景点之间距离远搭车找路累得够呛。之前去过贵州的一个朋友也是向我推荐<span class="bnname"></span>的行程规划师<span class="wxname"></span>，设计了专属的行程旅游方案，玩的很开心。在这里把<span class="wsex">他</span>推荐给大家 微信 <span class="weixin"></span> 。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a13.jpg">--}}
+{{--                    <span>罗伊小公举</span>--}}
+{{--                    <span>LV.39</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>去年腊月22我去了贵州旅游，趁着放年假就带家人出去走走，春节旅游旺季，5天平均一人1600多的行程<span class="bnname"></span>的<span class="wxname"></span>导游还给省了零头，玩得还挺不错的，因为带有老人和小孩，出行有专车接送方便很多，住的酒店也很不错，而且管家也很照顾我的家人，旅行途中有很多不懂的地方都会及时耐心给我们解答，旅行途中还帮我们拎东西、拍照，说话风趣幽默，人很好哦，这是<span class="wsex">他</span>的微信 <span class="weixin"></span><br>--}}
+{{--                    上次回来的时候还说要给<span class="wsex">他</span>介绍朋友过去的，有需要的朋友可以加<span class="wsex">他</span>微信呦。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="chat-item-box">--}}
+{{--            <div class="chat-item-head">--}}
+{{--                <div class="chat-avatar">--}}
+{{--                    <img src="/files/a14.jpg">--}}
+{{--                    <span>如昨</span>--}}
+{{--                    <span>LV.39</span>--}}
+{{--                </div>--}}
+{{--                <span>2019-<span class="thisMonth">06</span>-<span class="thisDay1">9</span></span>--}}
+{{--            </div>--}}
+{{--            <div class="chat-item-body">--}}
+{{--                <p>刚旅游完，现在还在回老家的车上，大家介绍的导游安排的确实很好，很负责任也很热心，有时候晚上11点多联系都会回消息给我，挺不错的吧。</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
         <!--<div class="chat-item-box">
 					<div class="loadmore"><span>加载更多</span></div>
