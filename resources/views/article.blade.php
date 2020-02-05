@@ -849,6 +849,7 @@
     }
 </script>
 <script>
+    var get_url = '{{ env('APP_URL') }}';
     var zsly = ['pc', {{$article->uid}}];
     function get_wx_callback(data) {
         $('#a_wx').attr({'data-wechat_code':data.info.wxnumber,'data-wechat_id':data.info.wechat_id});
