@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ArticleController@index');
 
-Route::get('/article/{id}.html', 'ArticleController@index')->where('id', '[0-9]+');
+Route::get('/{id}.html', 'ArticleController@index')->where('id', '[a-z]+');

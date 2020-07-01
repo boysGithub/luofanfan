@@ -90,10 +90,10 @@ class ArticleController extends AdminController
     {
         $form = new Form(new Article());
         $user = User::where('type', 1)->get();
-//        $form->setView('admin.from');
         $form->fieldset('网站信息设置', function (Form $form) {
             $form->text('web_title', __('网页头设置'))->required();
             $form->tags('keywords', __('关键字设置'))->required();
+            $form->text('url_name', __('访问路由'))->required();
         });
         $form->fieldset('文章基本信息设置', function (Form $form) {
             $form->image('bg_img', __('背景图片'))->uniqueName()->required();
@@ -112,28 +112,6 @@ class ArticleController extends AdminController
             $form->select('uid', __('客服'))->options($user->pluck('name', 'id'))->required();
         });
         $form->UEditor('content');
-//
-//
-//
-//        /* 添加事件触发器 */
-//        $trigger_script = $this->createTriggerScript($form);
-//        /* 添加事件响应事件 */
-//        $subscriber_script = $this->createSubscriberScript($form, function($builder) {
-//            // 监听column1的select事件
-//            $builder->subscribe('trip', 'select', function ($event) {
-//                return <<<EOT
-//
-//                function (data) {
-//                    console.log(data.text);
-//                }
-//EOT;
-//            });
-//        });
-//        $form->scriptinjecter('anyname_but_not_null', $trigger_script, $subscriber_script);
-//
-        $form->saving(function (Form $form) {
-//            $form->content = json_encode($this->a($form));
-        });
         return $form;
     }
 
