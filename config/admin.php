@@ -408,15 +408,5 @@ return [
             ],
             // 'field_type' => '自定义名字'
         ],
-        'wang-editor' => [
-
-            // 如果要关掉这个扩展，设置为false
-            'enable' => true,
-
-            // 编辑器的配置
-            'config' => [
-
-            ]
-        ]
     ],
 ];

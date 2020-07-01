@@ -1,18 +1,19 @@
-var path_url = 'http://count.23lvxing.com';
-// var get_url = 'https://lv.lpl.app';
-var error_url = '/api/message/storeSystemError';
+var path_url = '//count.23lvxing.com';
+var error_url = '';
 var consult_count = typeof over_count != "undefined" ? over_count : '';
 var start_time = new Date().getTime();
 var ocpc_token = null;
 var resubmission = ''; /* 1或者true 为不去重 */
+var ipv6='';
 /*获取微信信息*/
+
 
 try{
     if (sessionStorage.getItem('zsly'+zsly[1])) {
         var data = JSON.parse(sessionStorage.getItem('zsly'+zsly[1]));
         display(data);
     } else{
-        post(get_url+'/api/getwechat', {id: zsly[1],consult_count:consult_count}, display, function (xhr, status, statusText) {
+        post(path_url+'/api/getrandonewechat', {id: zsly[1],consult_count:consult_count}, display, function (xhr, status, statusText) {
             try{
                 js_error(xhr, status, {mold:"important_mistakes",account_id:"",account_name:"",channel_id:"",channel_name:"",text:statusText},'重要错误1');
             }catch (e) {
@@ -22,7 +23,7 @@ try{
     }
 
 }catch (e) {
-    post(get_url+'/api/getwechat', {id: zsly[1],consult_count:consult_count}, display, function (xhr, status, statusText) {
+    post(path_url+'/api/getrandonewechat', {id: zsly[1],consult_count:consult_count}, display, function (xhr, status, statusText) {
         try{
             js_error(xhr, status, {mold:"important_mistakes",account_id:"",account_name:"",channel_id:"",channel_name:"",text:statusText},'重要错误2');
         }catch (e) {
@@ -33,6 +34,7 @@ try{
 
 /*处理模板信息*/
 function display(data) {
+    data = user
     try {
         sessionStorage.setItem('zsly'+zsly[1], JSON.stringify(data));
     }catch (e) {
@@ -89,9 +91,9 @@ function display(data) {
                     $.each(data.over,function(i,value){
                         var key = i+2;
                         $('.over_'+ key + '_wxnumber').html(value.wxnumber);
-                        $('.over_'+ key + '_weixin').html(value.wxnumber);
+                        $('.over_'+ key + '_weixin').html(value.wxnumber).attr('data-wxhao',value.wxnumber).attr('data-wxid',value.wechat_id);
                         $('.over_'+ key + '_wxname').html(value.nickname);
-						$('.over_'+ key + '_whimg').attr('src', value.wechat_header_img).css('background-image','url('+value.wechat_header_img+')');
+                        $('.over_'+ key + '_whimg').attr('src', value.wechat_header_img).css('background-image','url('+value.wechat_header_img+')');
                         $('.over_'+ key + '_weixin').click(function(event){
 
                             go(event.delegateTarget.dataset.wxhao,event.delegateTarget.dataset.wxid)
@@ -120,18 +122,18 @@ function display(data) {
                     });
                 }
             }catch (e) {
-                // console.log(e);
+                console.log(e);
             }
             /*套餐价钱*/
-            // try{
-            //     if(data.prices.length > 0){
-            //         $.each(data.prices,function(i,value){
-            //             $('.'+value[0]).html(value[1]);
-            //         });
-            //     }
-            // }catch (e) {
-            //     console.log(e);
-            // }
+            try{
+                if(data.prices.length > 0){
+                    $.each(data.prices,function(i,value){
+                        $('.'+value[0]).html(value[1]);
+                    });
+                }
+            }catch (e) {
+                console.log(e);
+            }
             try{
                 $('.wechat_code_id').attr({'data-wechat_code':data.info.wxnumber,'data-wechat_id':data.info.wechat_id}).click(function(){
                     var wechat_code = $(this).data('wechat_code');
@@ -143,14 +145,14 @@ function display(data) {
             }
             /*页面logo*/
             // try{
-                // if(data.copyright.company.indexOf('小飞鱼') != -1){
-                    // $(".cwk_logo,.xfy_logo").attr('src','http://www.23lvxing.com/img/xfy_logo.png');
-                // }
-                // if(data.copyright.company.indexOf('纯玩客') != -1){
-                    // $(".cwk_logo,.xfy_logo").attr('src','http://www.23lvxing.com/img/cwk_logo.png');
-                // }
+            // if(data.copyright.company.indexOf('小飞鱼') != -1){
+            // $(".cwk_logo,.xfy_logo").attr('src','http://www.23lvxing.com/img/xfy_logo.png');
+            // }
+            // if(data.copyright.company.indexOf('纯玩客') != -1){
+            // $(".cwk_logo,.xfy_logo").attr('src','http://www.23lvxing.com/img/cwk_logo.png');
+            // }
             // }catch (e) {
-                // console.log(e);
+            // console.log(e);
             // }
             /*其它*/
             try{
@@ -172,7 +174,7 @@ function display(data) {
                         $("body").append('<div class="zhezhaocc" style="position: fixed;top:0;left:0;right:0;bottom:0;background-color: rgba(0,0,0,0.5);z-index:8888;display: none;cursor: pointer;"></div>');
                         $('.weixin').html('<span class="wxhao">' + data.info.wxnumber + '</span><img data-wxhao="'+data.info.wxnumber+'" data-wxid="'+data.info.wechat_id+'" src="'+path_url+'/static/img/see2wm.png" align="middle" style="cursor: pointer;vertical-align: top;"><div style="width:238px;height:271px;position:fixed;top:50%;margin-top:-120px;left:50%;margin-left: -120px;z-index: 9999;display: none;background:url('+path_url+'/static/img/wxtc_bg.png) no-repeat;"><div style="width:175px;height:175px;margin:40px 0 0 26px;line-height:175px;text-align:center;font-size:0;box-sizing: border-box;"><img class="linjj" src="' + data.info.code + '" style="max-width:175px;height:auto;vertical-align: middle;"></div><div style="width:35px;height:35px;position:absolute;top:0;right:0;cursor:pointer;" class="wxtc_close"></div></div>');
                         $('.JJLin').attr({"data-wxhao":data.info.wxnumber,"data-wxid":data.info.wechat_id});
-						/*事件*/
+                        /*事件*/
                         try{
                             $(".weixin").on('click', 'img', function () {
                                 go(this.dataset.wxhao,this.dataset.wxid);
@@ -202,7 +204,7 @@ function display(data) {
                         try{
                             var timeout = undefined;
                             $(".weixin").on("touchstart", function (event) {
-								var what_number = event.currentTarget.dataset.what_number || '';
+                                var what_number = event.currentTarget.dataset.what_number || '';
                                 lastTime = new Date().getTime();
                                 clearTimeout(timeout);
                                 state = 0;
@@ -232,50 +234,50 @@ function display(data) {
 
             }
         }
-		/*页面logo*/
-		// try{
-		// 	if(data.copyright.company.indexOf('小飞鱼') != -1){
-		// 		$(".cwk_logo,.xfy_logo").attr('src','http://www.23lvxing.com/img/xfy_logo.png');
-		// 	}
-		// 	if(data.copyright.company.indexOf('纯玩客') != -1){
-		// 		$(".cwk_logo,.xfy_logo").attr('src','http://www.23lvxing.com/img/cwk_logo.png');
-		// 	}
-		// }catch (e) {
-		// 	console.log(e);
-		// }
-		/*其它*/
-		// try{
-		// 	//$('.wxname2').html(data.copyright.subjection_nickname);
-		// 	$(".Fcompany").text(data.copyright.company);
-		// 	$(".Ficp").text(data.copyright.icp);
-		// 	$(".Faddress").text(data.copyright.address);
-		// }catch (e) {
-		// 	console.log(e);
-		// }
+        /*页面logo*/
+        try{
+            if(data.copyright.company.indexOf('小飞鱼') != -1){
+                $(".cwk_logo,.xfy_logo").attr('src','http://www.23lvxing.com/img/xfy_logo.png');
+            }
+            if(data.copyright.company.indexOf('纯玩客') != -1){
+                $(".cwk_logo,.xfy_logo").attr('src','http://www.23lvxing.com/img/cwk_logo.png');
+            }
+        }catch (e) {
+            console.log(e);
+        }
+        /*其它*/
+        try{
+            //$('.wxname2').html(data.copyright.subjection_nickname);
+            $(".Fcompany").text(data.copyright.company);
+            $(".Ficp").text(data.copyright.icp);
+            $(".Faddress").text(data.copyright.address);
+        }catch (e) {
+            console.log(e);
+        }
     }catch (e) {
         console.log(e);
     }
 
-	try {
-		typeof get_wx_callback === "function" ? get_wx_callback(data) : false;
-	}catch (e) {
-		console.log(e);
-	}
-	try{
-		ocpc_token = data.ocpc_token;
-	}catch(e){}
+    try {
+        typeof get_wx_callback === "function" ? get_wx_callback(data) : false;
+    }catch (e) {
+        console.log(e);
+    }
+    try{
+        ocpc_token = data.ocpc_token;
+    }catch(e){}
 }
 function code_display(class_name,info){
-	//$("body").append('<div class="zhezhaocc" style="position: fixed;top:0;left:0;right:0;bottom:0;background-color: rgba(0,0,0,0.5);z-index:8888;display: none;cursor: pointer;"></div>');
+    //$("body").append('<div class="zhezhaocc" style="position: fixed;top:0;left:0;right:0;bottom:0;background-color: rgba(0,0,0,0.5);z-index:8888;display: none;cursor: pointer;"></div>');
     $('.'+class_name).html('<span class="wxhao">' + info.wxnumber + '</span><img data-wxhao="'+info.wxnumber+'" data-wxid="'+info.wechat_id+'" src="'+path_url+'/static/img/see2wm.png" align="middle" style="cursor: pointer;vertical-align: top;"><div style="width:238px;height:271px;position:fixed;top:50%;margin-top:-120px;left:50%;margin-left: -120px;z-index: 9999;display: none;background:url('+path_url+'/static/img/wxtc_bg.png) no-repeat;"><div style="width:175px;height:175px;margin:40px 0 0 26px;line-height:175px;text-align:center;font-size:0;box-sizing: border-box;"><img class="linjj" src="' + info.code + '" style="max-width:175px;height:auto;vertical-align: middle;"></div><div style="width:35px;height:35px;position:absolute;top:0;right:0;cursor:pointer;" class="wxtc_close"></div></div>');
-	$("."+class_name).on('click', 'img', function () {
-		go(this.dataset.wxhao,this.dataset.wxid);
-		$(this).siblings("div").show();
-		$(".zhezhaocc").show()
-	}).on('click', '.wxtc_close', function () {
-		$(".zhezhaocc").hide();
-		$("."+class_name).children("div").hide()
-	});
+    $("."+class_name).on('click', 'img', function () {
+        go(this.dataset.wxhao,this.dataset.wxid);
+        $(this).siblings("div").show();
+        $(".zhezhaocc").show()
+    }).on('click', '.wxtc_close', function () {
+        $(".zhezhaocc").hide();
+        $("."+class_name).children("div").hide()
+    });
 }
 /*处理统计信息*/
 function go(wechat,wechat_id,what_number) {
@@ -283,15 +285,21 @@ function go(wechat,wechat_id,what_number) {
     var burl1 = document.referrer;
     var stop_time = new Date().getTime();
     var residence_time = stop_time - start_time;
-	var scroll_percent = window.zsly.scroll_percent || 0;
-	var what_number = what_number || '';
-    // $.post(path_url+"/api/count", {landing_page: url, wechat: wechat, source_url: burl1, wechat_id: wechat_id, phone_model: phone_model(),residence_time:parseInt(residence_time/1000),scroll_percent:scroll_percent,what_number:what_number,ocpc_token:ocpc_token,resubmission:resubmission},function(data){
-	// 	try {
-	// 		typeof go_callback === "function" ? go_callback(data) : false;
-	// 	}catch (e) {
-	// 		console.log(e);
-	// 	}
-	// })
+    var scroll_percent = window.zsly.scroll_percent || 0;
+    var what_number = what_number || '';
+    $.post(path_url+"/api/count", {landing_page: url, wechat: wechat, source_url: burl1, wechat_id: wechat_id, phone_model: phone_model(),residence_time:parseInt(residence_time/1000),scroll_percent:scroll_percent,what_number:what_number,ocpc_token:ocpc_token,resubmission:resubmission,ipv6:ipv6,account_id:zsly[1]},function(data){
+        try {
+            if(typeof go_callback === "function"){
+                go_callback(data);
+            }else{
+                if(typeof debug !== "undefined"){
+                    alert(JSON.stringify(data))
+                }
+            }
+        }catch (e) {
+            console.log(e);
+        }
+    })
 }
 /*POST 请求*/
 function post(url, data, success, error, debug) {
@@ -328,9 +336,13 @@ function post(url, data, success, error, debug) {
                 _data.push(encodeURIComponent(key) + "=" + encodeURIComponent(data[key]));
             }
         }
-        xmlhttp.open("POST", url);
-        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.send(_data.join("&"));
+        try{
+            xmlhttp.open("POST", url);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send(_data.join("&"));
+        }catch(e){
+            console.log('request error');
+        }
     } catch (e) {
         if (debug) {
             document.body.innerHTML = "function post error!<br>" + e;
@@ -390,32 +402,25 @@ function js_error(xhr, status, statusContent, errorText){
     var D = new Date;
     var M = D.getMonth();
     var M_day = D.getDate();
-    if (M >= 11) {
-        M += 2 - 12
-    } else if (M == 3 && M_day > 25) {
-        M = '五一劳动节'
-    } else if (M == 4) {
-        if (M_day < 5) {
-            M = '五一劳动节'
-        } else if(M_day<25){
-            M += 1
-        } else{
-            M +=2
-        }
-    } else if (M == 8 && M_day > 25) {
-        M = '十一'
-    } else if (M == 9) {
-        if (M_day < 5) {
-            M = '十一'
-        } else if(M_day<25){
-			M += 1
-		}else{
-			M += 2
-		}
-    } else  if(M_day<25){
-        M += 1
-    }else{
-        M += 2
+    //
+    switch (M) {
+        case 3:M_day>25?M='五一劳动节':M+=1
+            break;
+
+        case 4:if(M_day<5){M='五一劳动节'}else if (M_day<25){M+=1}else{M+=2}
+            break;
+
+        case 8:M_day>25?M='十一':M+=1
+            break;
+
+        case 9:if(M_day<5){M='十一'}else if (M_day<25){M+=1}else{M+=2}
+            break;
+
+        case 11:M_day<25?M+=1:M+=2-12
+            break;
+
+        default:M_day<25?M+=1:M+=2
+            break;
     }
     if (!isNaN(M)) {
         M += '月'
@@ -425,34 +430,43 @@ function js_error(xhr, status, statusContent, errorText){
     }
 })();
 
-// try{
-// 	var page_url = window.location.origin+window.location.pathname;
-// 	post(path_url+'/api/comment/check',{page_url:page_url},function(e){
-// 		if(e.status == 'success' && e.ycpl=='yes'){
-// 			$('.ycpl').hide();
-// 			$('.articleinfos').hide();
-// 		}
-// 	});
-// }catch(e){
-//   //TODO handle the exception
-// }
+try{
+    var page_url = window.location.origin+window.location.pathname;
+    post(path_url+'/api/comment/check',{page_url:page_url},function(e){
+        if(e.status == 'success' && e.ycpl=='yes'){
+            $('.ycpl').hide();
+            $('.articleinfos').hide();
+        }
+    });
+}catch(e){
+    //TODO handle the exception
+}
 
 try{
-	// 页面总高
-	var totalH = document.body.scrollHeight || document.documentElement.scrollHeight
-	// 可视高
-	var clientH = window.innerHeight || document.documentElement.clientHeight
-	// 滚动百份比
-	window.zsly.scroll_percent = '0';
-	window.addEventListener('scroll', function(e){
-		// 计算有效高
-		var validH = totalH - clientH
-		// 滚动条卷去高度
-		var scrollH = document.body.scrollTop || document.documentElement.scrollTop
-		// 百分比
+    // 页面总高
+    var totalH = document.body.scrollHeight || document.documentElement.scrollHeight
+    // 可视高
+    var clientH = window.innerHeight || document.documentElement.clientHeight
+    // 滚动百份比
+    window.zsly.scroll_percent = '0';
+    window.addEventListener('scroll', function(e){
+        // 计算有效高
+        var validH = totalH - clientH
+        // 滚动条卷去高度
+        var scrollH = document.body.scrollTop || document.documentElement.scrollTop
+        // 百分比
 
-		window.zsly.scroll_percent = scrollH >= validH ? 100 : (scrollH/validH*100).toFixed(0);
-	})
+        window.zsly.scroll_percent = scrollH >= validH ? 100 : (scrollH/validH*100).toFixed(0);
+    })
 }catch(e){
-	console.log('scroll_percent is error');
+    console.log('scroll_percent is error');
+}
+
+
+try{
+    post('http://ipv6.zslyzjj11.com/api.php',{a:"a"},function(Reslos){
+        ipv6 = Reslos.ipv6;
+    });
+}catch(e){
+    console.log('ipv6 error');
 }

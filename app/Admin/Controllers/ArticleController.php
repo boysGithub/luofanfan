@@ -90,7 +90,7 @@ class ArticleController extends AdminController
     {
         $form = new Form(new Article());
         $user = User::where('type', 1)->get();
-        $form->setView('admin.from');
+//        $form->setView('admin.from');
         $form->fieldset('网站信息设置', function (Form $form) {
             $form->text('web_title', __('网页头设置'))->required();
             $form->tags('keywords', __('关键字设置'))->required();
@@ -111,12 +111,7 @@ class ArticleController extends AdminController
         $form->fieldset('客服信息设置', function (Form $form) use ($user) {
             $form->select('uid', __('客服'))->options($user->pluck('name', 'id'))->required();
         });
-        $form->text('content', '内容');
-        $form->image('itinerary_img', __('简介配图'))->uniqueName();
-
-        $form->fieldset('文章内容编辑', function (Form $form) {
-            $form->divider('前言');
-        });
+        $form->UEditor('content');
 //
 //
 //
@@ -137,7 +132,7 @@ class ArticleController extends AdminController
 //        $form->scriptinjecter('anyname_but_not_null', $trigger_script, $subscriber_script);
 //
         $form->saving(function (Form $form) {
-            $form->content = json_encode($this->a($form));
+//            $form->content = json_encode($this->a($form));
         });
         return $form;
     }
